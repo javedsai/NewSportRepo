@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="SportDirect.Areas.Views.PaymentPage">
+    <ContentPage.Content> 
+        <StackLayout>
+            <StackLayout Margin="0,0,0,5"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Payment Details" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}" FontSize="20"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+
+            <ScrollView>
+                <StackLayout Margin="10">
+                    <Label TextType="Text" Margin="0,0,0,10" Text="Choose your payment method"  Style="{DynamicResource DefaultLabelStyle2}" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15"/>
+                  
+                    <StackLayout Orientation="Horizontal" Margin="0,6">
+                        <StackLayout>
+                            <Frame Style="{DynamicResource FrameStyle }" BorderColor="Transparent" HeightRequest="60" WidthRequest="100" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="amex" Aspect="AspectFit"/>
+                            </Frame>
+                            <Image Margin="0,5" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding UncheckImage1}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AmexCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout> 
+                         <StackLayout>
+                            <Frame Style="{DynamicResource FrameStyle }" BorderColor="Transparent" HeightRequest="60" WidthRequest="100" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="applepay" Aspect="AspectFit"/>
+                            </Frame>
+                            <Image Margin="0,5" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding UncheckImage2}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ApplepayCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                         <StackLayout>
+                            <Frame Style="{DynamicResource FrameStyle }" BorderColor="Transparent" HeightRequest="60" WidthRequest="100" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="gpay" Aspect="AspectFit"/>
+                            </Frame>
+                            <Image Margin="0,5" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding UncheckImage3}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GPayCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                         <StackLayout>
+                            <Frame Style="{DynamicResource FrameStyle }" BorderColor="Transparent" HeightRequest="60" WidthRequest="100" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="mastercard" Aspect="AspectFit"/>
+                            </Frame>
+                            <Image Margin="0,5" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding CheckImage}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MasterCardCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout> 
+                    </StackLayout>
+                    
+                    <StackLayout>
+                        <Label Text="We do have other options for payment" Margin="0,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}" FontSize="16"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding CreditCardImage}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CreditCardCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Credit card" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}"  FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CreditCardCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding PurchaseOrderImage}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PurchaseOrderCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Purchase order" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}"  FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PurchaseOrderCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                   <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding CheckImg}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CheckCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Check" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}"  FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CheckCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                     <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding PaypalExpressCheckImage}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PaypalExpressCheckoutCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Paypal express checkout" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}"  FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PaypalExpressCheckoutCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding InteracImage}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InteracCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Interac" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}"  FontSize="15">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InteracCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout> 
+
+                    <StackLayout>
+                        <Frame Padding="12" Margin="0,20,0,4" BackgroundColor="#E9E9E9" BorderColor="#d9d9d9" Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry FontSize="16"  Text="{Binding CardNumber}" MaxLength="16" Placeholder="123456789012345" Keyboard="Numeric" Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandBoldFont}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+                        <Frame Padding="12" Margin="0,4" BackgroundColor="#E9E9E9" BorderColor="#d9d9d9" Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry FontSize="16"  Text="{Binding CardName}" MaxLength="30" Placeholder="Card Holder Name" Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandBoldFont}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+                        <Grid Margin="0,4" ColumnSpacing="10">
+                            <Frame Padding="12"  BackgroundColor="#E9E9E9" BorderColor="#d9d9d9" Style="{DynamicResource FrameStyle}">
+                                <controls:BorderlessDatePicker Placeholder="Expiry Date" Date="{Binding Expiry}" MinimumDate="{Binding FromMiminumDate}" MaximumDate="06/20/2025" Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandBoldFont}"  FontSize="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                            </Frame>
+                            <Frame Grid.Column="1" Padding="12" BackgroundColor="#E9E9E9" BorderColor="#d9d9d9" Style="{DynamicResource FrameStyle}">
+                                <controls:BorderlessEntry FontSize="16" Text="{Binding cvv}" Placeholder="cvv" MaxLength="3" Style="{DynamicResource DefaultEntryStyle }" Keyboard="Numeric" FontFamily="{DynamicResource QuicksandBoldFont}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Margin="4,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding SaveCheckImage}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveAndUnsaveCardCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Save card for future" Margin="2,0" VerticalOptions="Center" HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}" TextColor="Gray" FontSize="16">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveAndUnsaveCardCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,50,0,20">
+                        <Button Text="Saved &amp; Payment" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding PaymentCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

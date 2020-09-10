@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"  xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False" BackgroundImageSource="BgImage"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"
+             x:Class="SportDirect.Areas.Authentication.Views.RegisterPage">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <yummy:PancakeView  BackgroundGradientAngle="10" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#F1F2F2" CornerRadius="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Image Margin="0,10,0,0" Source="logo" VerticalOptions="Center" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
+                        <StackLayout VerticalOptions="Center" Margin="30,10" Orientation="Vertical">
+                            <Frame Padding="6" Margin="0,5" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <controls:BorderlessEntry                          
+                             Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandMediumFont}"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="First Name" Text="{Binding FirstName}" />
+                            </Frame>
+                            <Frame Padding="6" Margin="0,5" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <controls:BorderlessEntry                          
+                             Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandMediumFont}"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="Last Name" Text="{Binding LastName}" />
+                            </Frame>
+                            
+                            <Frame Padding="6" Margin="0,5" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <controls:BorderlessEntry                          
+                             Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandMediumFont}"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="Enter Business/Organization name" Text="{Binding OrganizationName}" />
+                            </Frame>
+                            <Frame Padding="6" Margin="0,5" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <controls:BorderlessEntry                          
+                             Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandMediumFont}" Keyboard="Email"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="Email Address" Text="{Binding Email}" />
+                            </Frame>
+                            <Frame Padding="6"  Margin="0,5,0,15" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <controls:BorderlessEntry                           
+                             Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandMediumFont}"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
+                            </Frame>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Would you like receive order status and offers notification?" VerticalOptions="Center" HorizontalOptions="Start" FontSize="11" Style="{StaticResource DefaultLabelStyle}"/>
+                                <Switch Grid.Column="1" OnColor="White"  ThumbColor="#D4283A" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Sign up our monthly newsletter" VerticalOptions="Center" HorizontalOptions="Start" FontSize="11" Style="{StaticResource DefaultLabelStyle}"/>
+                                <Switch Grid.Column="1" OnColor="White" ThumbColor="#D4283A" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                            </Grid>
+                            <StackLayout>
+                                <Button Text="Register" Margin="0,6" Style="{DynamicResource DefaultButtonStyle2}"  Command="{Binding RegisterCommand}" BackgroundColor="#00679C" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Button Text="Sign in" Margin="0,6" Style="{DynamicResource DefaultButtonStyle2}" Command="{Binding SigninCommand}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

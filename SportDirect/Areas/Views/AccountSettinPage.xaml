@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SportDirect.Areas.Views.AccountSettinPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SportDirect.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:translate="clr-namespace:SportDirect.Resources"
+    x:Name="thispage"
+    ios:Page.UseSafeArea="true"
+    material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+    BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout
+                    Margin="0,0,0,5"
+                    HeightRequest="60"
+                    Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton
+                            Margin="10"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding GetBackCommand}"
+                            HeightRequest="24"
+                            HorizontalOptions="Start"
+                            Source="back"
+                            VerticalOptions="Center"
+                            WidthRequest="24" />
+                        <Label
+                            Margin="5,0"
+                            FontSize="20"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DefaultLabelStyle}"
+                            Text="Account Setting"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    <BoxView Style="{StaticResource BoxViewStyle}" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Grid>
+                        <controls:CircleImage
+                            Margin="0,8,0,20"
+                            Aspect="AspectFill"
+                            BorderColor="#000000"
+                            BorderThickness="3"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="{Binding ProfileImageSource}"
+                            VerticalOptions="Center"
+                            WidthRequest="150" />
+                        <Grid>
+                            <ImageButton
+                                Command="{Binding ProfilePicCommand}"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="camera"
+                                VerticalOptions="Center"
+                                WidthRequest="32" />
+                        </Grid>
+                    </Grid>
+                    <BoxView Margin="0,10" Style="{StaticResource BoxViewStyle}" />
+                    <controls:BorderlessEntry
+                        Margin="20,0"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Name"
+                        Style="{StaticResource DefaultLabelStyle2}"
+                        Text="{Binding ProfileName}"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <BoxView Margin="0,10" Style="{StaticResource BoxViewStyle}" />
+                    <controls:BorderlessEntry
+                        Margin="20,0"
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        IsEnabled="False"
+                        Placeholder="Email"
+                        Style="{StaticResource DefaultLabelStyle2}"
+                        Text="{Binding ProfileEmail}"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <BoxView Margin="0,10" Style="{StaticResource BoxViewStyle}" />
+                    <controls:BorderlessEntry
+                        Margin="20,0"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Phone Number"
+                        Style="{StaticResource DefaultLabelStyle2}"
+                        Text="{Binding PhoneNumber}"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <BoxView Margin="0,20,0,0" Style="{StaticResource BoxViewStyle}" />
+                </StackLayout>
+                <StackLayout Margin="20" VerticalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding SaveCommand}"
+                        Style="{DynamicResource DefaultButtonStyle}"
+                        Text="Save" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

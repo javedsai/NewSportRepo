@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:SportDirect.Areas.Views"
+             mc:Ignorable="d"  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" xmlns:translate="clr-namespace:SportDirect.Resources"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:Controls="clr-namespace:SportDirect.Controls"
+             x:Class="SportDirect.Areas.Views.TabbedBaar.MainTabbedBar"    
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:lang="clr-namespace:SportDirect.Resources"
+            android:TabbedPage.ToolbarPlacement="Bottom" Title="{lang:Translate HomeTxt}" android:TabbedPage.IsSwipePagingEnabled="False"     
+            BarBackgroundColor="#f9f9f9" UnselectedTabColor="#C7C6CC" SelectedTabColor="#00679C">
+
+    <NavigationPage Title="{lang:Translate HomeTxt}" IconImageSource="home.png" >
+        <x:Arguments>
+            <Local:Home />
+        </x:Arguments>
+    </NavigationPage>
+    <!--"offergrey" "offer2" "offerblue"-->
+    <NavigationPage Title="{lang:Translate OffersTxt}" IconImageSource="offerblue.png">
+        <x:Arguments>
+            <Local:OffersPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{lang:Translate BlogTxt}" IconImageSource="blog.png">
+        <x:Arguments>
+            <Local:BlogsPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{lang:Translate AccountTxt}" IconImageSource="account.png">
+        <x:Arguments>
+            <Local:ProfilePage />
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False" BackgroundImageSource="BgImage"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"
+             x:Class="SportDirect.Areas.Views.LanguagePage">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <yummy:PancakeView  BackgroundGradientAngle="10" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#F1F2F2" CornerRadius="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Image Margin="0,10,0,0" Source="logo" VerticalOptions="Center" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
+                   
+                    <StackLayout VerticalOptions="CenterAndExpand" Margin="30,0" Orientation="Vertical">
+                        <Frame Padding="6" Margin="0,8" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                            <Grid Margin="15,0">
+                                <Label Text="English"  Style="{StaticResource DefaultLabelStyle2}"
+                                 FontFamily="{DynamicResource RobotoRegularFont}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                    <Image Grid.Column="1" Margin="0,5" Source="{Binding CheckRedImage}" VerticalOptions="Center" HorizontalOptions="End"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EnglishCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame> 
+                        <Frame Padding="6" Margin="0,8" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                            <Grid Margin="15,0">
+                                    <Label Text="French"  Style="{StaticResource DefaultLabelStyle2}"
+                                 FontFamily="{DynamicResource RobotoRegularFont}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                    <Image Grid.Column="1" Margin="0,5" Source="{Binding UncheckImage}" VerticalOptions="Center" HorizontalOptions="End"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FrenchCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+ 
+                            <StackLayout>                               
+                                <Button Text="Continue" Margin="0,40"  Style="{DynamicResource DefaultButtonStyle2}"  Command="{Binding ContinueCommmand}" BackgroundColor="#00679C" />
+                        </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

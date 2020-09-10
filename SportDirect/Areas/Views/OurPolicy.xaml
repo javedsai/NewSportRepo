@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:translate="clr-namespace:SportDirect.Resources" x:Name="thispage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" BackgroundColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             x:Class="SportDirect.Areas.Views.OurPolicy">
+    <ContentPage.Content>
+        <Grid RowDefinitions="60,*">
+            <StackLayout Margin="0,0,0,0"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Our Policies" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+
+            <ScrollView Margin="10" Grid.Row="1">
+                <StackLayout Orientation="Vertical">
+                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="{Binding Title }" HorizontalOptions="Start" FontSize="15"/>
+                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding Descreptions }" HorizontalOptions="CenterAndExpand" FontSize="14"/>
+                    <Label TextType="Text" Margin="0,6" Style="{DynamicResource DefaultLabelStyle}" Text="What Type of Information Is Kept?" HorizontalOptions="Start" FontSize="15"/>
+                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding Descreptions1 }" HorizontalOptions="CenterAndExpand" FontSize="14"/>
+                    <Label TextType="Text" Margin="0,6" Style="{DynamicResource DefaultLabelStyle}" Text="When Ordering" HorizontalOptions="Start" FontSize="15"/>
+                    <Label TextType="Text"  Style="{DynamicResource DefaultLabelStyle2}" Text="They or information we require to process on order is the Folling:" HorizontalOptions="Start" FontSize="14"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="8" WidthRequest="8" BackgroundColor="Black" CornerRadius="4"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="Your name" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                     <StackLayout Orientation="Horizontal">
+                        <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="8" WidthRequest="8" BackgroundColor="Black" CornerRadius="4"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="Your credit date" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                     <StackLayout Orientation="Horizontal">
+                        <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="8" WidthRequest="8" BackgroundColor="Black" CornerRadius="4"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="The billing address of the credit card (for security purpose)" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                     <StackLayout Orientation="Horizontal">
+                        <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="8" WidthRequest="8" BackgroundColor="Black" CornerRadius="4"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="A shipping address (if different from billing address)" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                     <StackLayout Orientation="Horizontal">
+                        <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="8" WidthRequest="8" BackgroundColor="Black" CornerRadius="4"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="And your phone number so that we can contact with any" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                     <Label TextType="Text"  Margin="0,6" Style="{DynamicResource DefaultLabelStyle}" Text="Additionally or optional" HorizontalOptions="Start" FontSize="15"/>
+                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding Descreptions2 }" HorizontalOptions="CenterAndExpand" FontSize="14"/>
+                   
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

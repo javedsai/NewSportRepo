@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rgPages:PopupPage
+    x:Class="SportDirect.Areas.Views.SortPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rgAnimations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:rgPages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    x:Name="thispage"
+    CloseWhenBackgroundIsClicked="False"
+    mc:Ignorable="d">
+    <rgPages:PopupPage.Animation>
+        <rgAnimations:MoveAnimation
+            DurationIn="500"
+            DurationOut="400"
+            PositionIn="Bottom"
+            PositionOut="Bottom" />
+    </rgPages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Grid>
+            <Frame
+                Margin="20,0,20,0"
+                CornerRadius="10"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <StackLayout>
+                        <Image
+                            HorizontalOptions="EndAndExpand"
+                            Source="delete"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GetBackCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <StackLayout
+                        Padding="10"
+                        BackgroundColor="White"
+                        BindableLayout.ItemsSource="{Binding SortList}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Margin="0,4,8,0" HeightRequest="30">
+                                    <Grid Margin="0,2">
+                                        <Label
+                                            FontSize="15"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource DefaultLabelStyle}"
+                                            Text="{Binding title}"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </Grid>
+                                    <BoxView
+                                        BackgroundColor="Black"
+                                        HeightRequest="1"
+                                        Opacity="0.5" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.SortListCommand, Source={x:Reference thispage}}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</rgPages:PopupPage>

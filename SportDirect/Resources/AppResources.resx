@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="OurServicesTxt" xml:space="preserve">
+    <value>OUR SERVICES</value>
+  </data>
+  <data name="GetInTouchBtnTxt" xml:space="preserve">
+    <value>Get In Touch</value>
+  </data>
+  <data name="AddressTxt" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="HappyTxt" xml:space="preserve">
+    <value>We are happy to help You</value>
+  </data>
+  <data name="SubmitBtnTxt" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="MediaBuyingTxt" xml:space="preserve">
+    <value>Media Buying</value>
+  </data>
+  <data name="CallOnUsTxt" xml:space="preserve">
+    <value>Call Us On</value>
+  </data>
+  <data name="MediaBuyingWorkTxt" xml:space="preserve">
+    <value>Media Buying Work</value>
+  </data>
+  <data name="ContantUsBtnTxt" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="MediaBuyingExplainTxt" xml:space="preserve">
+    <value>By the same illusion which lifts the horion of the sea to the level of the spector on a hillside, the sable cloud beneath was dished out...</value>
+  </data>
+  <data name="FollowUsTxt" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="SpotifyExplainTxt" xml:space="preserve">
+    <value>Spotify Technology S.A. is an international media services provider. It is legally domiciled in Luxembourg and is headquartered in Stockholm, Sweden.</value>
+  </data>
+  <data name="OurWorkTxt" xml:space="preserve">
+    <value>OUR WORK</value>
+  </data>
+  <data name="SpotifyWorkTxt" xml:space="preserve">
+    <value>Spotify Work</value>
+  </data>
+  <data name="WriteUsOnTxt" xml:space="preserve">
+    <value>Write Us On</value>
+  </data>
+  <data name="GetStartBtnTxt" xml:space="preserve">
+    <value>Get Started</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="KnwMorTxt" xml:space="preserve">
+    <value>Know More</value>
+  </data>
+  <data name="LetUsKnoUrRqmntAndTxt" xml:space="preserve">
+    <value>Let us know your requirement and</value>
+  </data>
+  <data name="NewsBlogsTxt" xml:space="preserve">
+    <value>NEWS &amp;amp; BLOGS</value>
+  </data>
+  <data name="NewsTxt" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="SpotifyTxt" xml:space="preserve">
+    <value>Spotify</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="ViewAllTxt" xml:space="preserve">
+    <value>VIEW ALL</value>
+  </data>
+  <data name="WeWillGetBckToUSoonTxt" xml:space="preserve">
+    <value>we'll get back to you soon</value>
+  </data>
+  <data name="ExploreOtherSrvcsTxt" xml:space="preserve">
+    <value>EXPLORE OTHER SERVICES</value>
+  </data>
+  <data name="GoToHomeTxt" xml:space="preserve">
+    <value>Go To Home</value>
+  </data>
+  <data name="LeaveCmntTxt" xml:space="preserve">
+    <value>Leave Comment</value>
+  </data>
+  <data name="LetKnowRqrmntTxt" xml:space="preserve">
+    <value>Let us know your requirement and</value>
+  </data>
+  <data name="orTxt" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="OurClientsTxt" xml:space="preserve">
+    <value>Our Clients</value>
+  </data>
+  <data name="ShareTxt" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ThnkUTxt" xml:space="preserve">
+    <value>Thank You</value>
+  </data>
+  <data name="WeWillgetBakShrtlyTxt" xml:space="preserve">
+    <value>We'll get back you shortly</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="About_us_Txt" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="AccountTxt" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Barcode_scanTxt" xml:space="preserve">
+    <value>Barcode scan</value>
+  </data>
+  <data name="BenefitsTxt" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="BlogTxt" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="Book_InstallationTxt" xml:space="preserve">
+    <value>Book Installation</value>
+  </data>
+  <data name="Business_locationTxt" xml:space="preserve">
+    <value>Business location</value>
+  </data>
+  <data name="callTxt" xml:space="preserve">
+    <value>Call:1-800-397-2795</value>
+  </data>
+  <data name="ComplexTxt" xml:space="preserve">
+    <value>Complex</value>
+  </data>
+  <data name="Contact_us_Txt" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="createnewaccountTxt" xml:space="preserve">
+    <value>Create a new account</value>
+  </data>
+  <data name="EmailAddressTxt" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="FAQ_Txt" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="HelpTxt" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HomeTxt" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Live_customer_serviceTxt" xml:space="preserve">
+    <value>Live customer service</value>
+  </data>
+  <data name="LogoutTxt" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Member_only_promotionsTxt" xml:space="preserve">
+    <value>Member-only promotions</value>
+  </data>
+  <data name="OffersTxt" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="On_SaleTxt" xml:space="preserve">
+    <value>On Sale</value>
+  </data>
+  <data name="Order_TrackingTxt" xml:space="preserve">
+    <value>Order Tracking</value>
+  </data>
+  <data name="Our_PoliciesTxt" xml:space="preserve">
+    <value>Our Policies</value>
+  </data>
+  <data name="Personalized_experienceTxt" xml:space="preserve">
+    <value>Personalized experience</value>
+  </data>
+  <data name="Pre-launch_access_to_productsTxt" xml:space="preserve">
+    <value>Pre-launch access to products</value>
+  </data>
+  <data name="Privacy_and_securityTxt" xml:space="preserve">
+    <value>Privacy and security</value>
+  </data>
+  <data name="PromotionTxt" xml:space="preserve">
+    <value>Promotion</value>
+  </data>
+  <data name="QuoteTxt" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="Reduced_shippingTxt" xml:space="preserve">
+    <value>Reduced shipping</value>
+  </data>
+  <data name="Refer_a_friendTxt" xml:space="preserve">
+    <value>Refer a friend</value>
+  </data>
+  <data name="SettingTxt" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="SigninTxt" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SimpleTxt" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="Since_Txt" xml:space="preserve">
+    <value>Since 2009, every client is important to us and we would to thank our layal customers. thank you</value>
+  </data>
+  <data name="SportdirectcaPlusMemeberTxt" xml:space="preserve">
+    <value>Sportdirect.ca Plus Memeber</value>
+  </data>
+  <data name="Terms_of_use" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
+  <data name="Warning_and_adviceTxt" xml:space="preserve">
+    <value>Warning and advice</value>
+  </data>
+</root>

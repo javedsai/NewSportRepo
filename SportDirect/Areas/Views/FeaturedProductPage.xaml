@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SportDirect.Areas.Views.FeaturedProductPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:translate="clr-namespace:SportDirect.Resources"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="thispage"
+    ios:Page.UseSafeArea="true"
+    material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+    BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <Grid RowDefinitions="60,Auto,*" RowSpacing="0">
+            <StackLayout Margin="0,0,0,5" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton
+                        Margin="10"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding GetBackCommand}"
+                        HeightRequest="24"
+                        HorizontalOptions="Start"
+                        Source="back"
+                        VerticalOptions="Center"
+                        WidthRequest="24" />
+                    <Label
+                        Margin="5,0"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}"
+                        Text="{Binding Title}"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}" />
+            </StackLayout>
+
+            <Grid
+                Grid.Row="1"
+                Margin="8,10,8,0"
+                ColumnDefinitions="6*,4*"
+                IsVisible="{Binding IsSortVisible}">
+                <Frame
+                    Grid.Column="1"
+                    Margin="0,2,0,0"
+                    BackgroundColor="#F8F8F6"
+                    BorderColor="#f2f2f2"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource FrameStyle1}"
+                    VerticalOptions="Center">
+                    <Grid>
+                        <!--<Grid Grid.Column="0" ColumnDefinitions="3.6*,.8*">
+                            <Label Text="New Arrivals" Margin="8,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
+                             Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
+                            <Image Grid.Column="1" HeightRequest="16" Margin="0,0,8,0" WidthRequest="16" Source="dropdown" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#f2f2f2" WidthRequest="1" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectCategoryCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>-->
+                        <Image
+                            Margin="8,0,0,0"
+                            HeightRequest="18"
+                            HorizontalOptions="Start"
+                            Source="sort"
+                            VerticalOptions="Center"
+                            WidthRequest="18" />
+                        <Label
+                            Margin="8,0,0,0"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource DefaultLabelStyle2}"
+                            Text="Sort"
+                            VerticalOptions="CenterAndExpand" />
+                        <BoxView
+                            BackgroundColor="#f2f2f2"
+                            HorizontalOptions="End"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="1" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SortCommand}" />
+                        </Grid.GestureRecognizers>
+                        <!--<Grid Grid.Column="1" IsVisible="false">
+                            <Image
+                                Margin="8,0"
+                                HeightRequest="18"
+                                HorizontalOptions="Start"
+                                Source="filter"
+                                VerticalOptions="Center"
+                                WidthRequest="18" />
+                            <Label
+                                Margin="8,0,0,0"
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource DefaultLabelStyle2}"
+                                Text="Filter"
+                                VerticalOptions="CenterAndExpand" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding FilterCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>-->
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="8,0">
+                <Grid>
+                    <CollectionView
+                        Margin="0,12"
+                        EmptyView="No Data found"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsSource="{Binding ProductList[0].edges}"
+                        RemainingItemsThreshold="5"
+                        RemainingItemsThresholdReachedCommand="{Binding ThresoldCommand}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                HorizontalItemSpacing="10"
+                                Orientation="Vertical"
+                                Span="2"
+                                VerticalItemSpacing="20" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame Padding="0" CornerRadius="10">
+                                        <Image
+                                            Aspect="Fill"
+                                            HeightRequest="175"
+                                            Source="{Binding node.variants.edges[0].node.image.originalSrc}" />
+                                    </Frame>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="11"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding node.title}"
+                                        TextColor="#171717" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Start"
+                                        TextColor="#00679C">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="$" />
+                                                <Span Text="{Binding node.variants.edges[0].node.price}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductCommand, Source={x:Reference thispage}}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <!--<Grid IsVisible="{Binding GridIsvisible}" ColumnDefinitions="4.4*,2.8*,2.8*">
+                    <yummy:PancakeView CornerRadius="0,0,10,10" BorderColor="#F8F8F6" BorderThickness="2" BackgroundColor="#F8F8F6" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid Margin="8,4,8,12">
+                            <Grid ColumnDefinitions="3.6*,.8*">
+                                <Label Text="New Arrivals" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
+                                <Image Source="{Binding ImageNewArrivals}" Grid.Column="1"  Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NewArrivalsCommand}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            <Grid Grid.Row="1" ColumnDefinitions="3.6*,.8*">
+                                <Label Text="Featured" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
+                                <Image Source="{Binding ImageFeatured}" Grid.Column="1" Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FeaturedCommand}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            <Grid Grid.Row="2" ColumnDefinitions="3.6*,.8*">
+                                <Label Text="Bestsellers" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
+                                <Image Source="{Binding ImageBestsellers}" Grid.Column="1" Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BestsellersCommand}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Grid>
+                   </yummy:PancakeView>
+                </Grid>-->
+            </Grid>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage> 

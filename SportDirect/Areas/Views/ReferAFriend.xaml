@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"  xmlns:translate="clr-namespace:SportDirect.Resources" x:Name="thispage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" BackgroundColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"         
+             x:Class="SportDirect.Areas.Views.ReferAFriend">
+    <ContentPage.Content>
+        <Grid RowDefinitions="50,*">
+            <StackLayout Margin="0,0,0,0"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Refer a friend" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+           
+            <StackLayout Margin="20,0" Grid.Row="1" VerticalOptions="CenterAndExpand">
+                <ScrollView>
+                    <StackLayout>
+                        <Image Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Source="referemail" Margin="0,20"/>
+                        <Label Text="Invite your friends and earn $5" Margin="10,20" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}" FontSize="25"/>
+                        <Label Text="For every friend who joins ReferUp we will give you $5" Margin="30,0" VerticalOptions="Start" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle2}" FontSize="20"/>
+                        <Button Margin="0,60,0,0" Text="Continue to payment method" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding ContinuePaymentCommand}"/>
+                    </StackLayout>
+                </ScrollView>       
+            </StackLayout>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage> 

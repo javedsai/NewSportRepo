@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"              
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"  xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"           
+             x:Class="SportDirect.Areas.Views.MyOrderDetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="0,0,0,5"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Orders Details" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}" FontSize="20"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+            
+            <ScrollView>
+                <StackLayout  Margin="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.4*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="2.6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame Style="{DynamicResource FrameStyle }" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                <forms:CachedImage Source="{Binding Image}" Aspect="AspectFill" ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
+                            </Frame>
+                            <StackLayout Margin="0,2" Grid.Column="1">
+                                <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding OrderDate}" MaxLines="2" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="14"/>
+                                <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="{Binding Title }" MaxLines="2" VerticalOptions="End"  HorizontalOptions="Start" FontSize="18"/>
+                                <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding ProductColor }" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="15"/>
+                                <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="{Binding Price }" TextColor="#7E7E7E" MaxLines="1" VerticalOptions="Start"  HorizontalOptions="Start" FontSize="18"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                <Frame  Padding="10,0" CornerRadius="12" HeightRequest="24" BorderColor="{Binding FrameColor}" BackgroundColor="{Binding FrameColor}" Style="{StaticResource FrameStyle}" HasShadow="False">
+                                    <Label Margin="0,3,0,5" TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding OrderStatus}"  VerticalOptions="Start" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="12" TextColor="White"/>
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+                        <Label Margin="0,8" TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="Delivered today" TextColor="#4B93B4" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="14"/>
+
+                        <StackLayout>
+                            <Grid RowSpacing="12">
+                                <Label Grid.Column="0" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Order Total" TextColor="Gray" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="16"/>
+                                <Label Grid.Column="1" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="$438" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="End" FontSize="16"/>
+                                <Label Grid.Row="1" Grid.Column="0" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Shipping Charges" TextColor="Gray" MaxLines="1" VerticalOptions="Center" HorizontalOptions="Start" FontSize="16"/>
+                                <Label Grid.Row="1" Grid.Column="1" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="$10" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="End" FontSize="16"/>
+                                <Label Grid.Row="2" Grid.Column="0" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Total Price" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="20"/>
+                                <Label Grid.Row="2" Grid.Column="1" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="$448" MaxLines="1" VerticalOptions="Center"  HorizontalOptions="End" FontSize="20"/>
+                            </Grid>
+                        </StackLayout>
+                        <BoxView Margin="0,16,0,6" Style="{StaticResource BoxViewStyle}"/>
+                        <Label Margin="0,6" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="How would you rate this product" MaxLines="2" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+                        <StackLayout Margin="0,10" Orientation="Horizontal" HorizontalOptions="Center">
+                            <Image Source="star" HeightRequest="20" WidthRequest="20"  VerticalOptions="Center"/>
+                            <Image Source="star" HeightRequest="20" WidthRequest="20"  VerticalOptions="Center"/>
+                            <Image Source="star" HeightRequest="20" WidthRequest="20"  VerticalOptions="Center"/>
+                            <Image Source="star" HeightRequest="20" WidthRequest="20"  VerticalOptions="Center"/>
+                            <Image Source="unfilledStar" HeightRequest="16" WidthRequest="16"  VerticalOptions="Center" />
+                        </StackLayout>
+                        <Frame Padding="6" Margin="0,10" BorderColor="#d9d9d9" Style="{DynamicResource FrameStyle}" HeightRequest="160">
+                              <StackLayout>
+                                <controls:BorderlessEditor BackgroundColor="Transparent" Margin="10" HeightRequest="90" Text="{Binding Review}" Placeholder="Write a review" Style="{DynamicResource DefaultEntryStyle }" FontFamily="{DynamicResource QuicksandBoldFont}"
+                                                           VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                                    <Frame Padding="0" Margin="10" BackgroundColor="#E9E9E9" BorderColor="#E9E9E9" Style="{DynamicResource FrameStyle}" HorizontalOptions="Start" WidthRequest="160" HeightRequest="50">
+                                <StackLayout Margin="10,3" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                  <Image Source="camera" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center"  VerticalOptions="Center"/>
+                                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="Add Pictures" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="15"/>
+                                      <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AddPicturesCommand }"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout> 
+                              </Frame>
+                                    <Image Source="{Binding ProfilePick}" HeightRequest="40" WidthRequest="40" VerticalOptions="Center"/>
+                            </StackLayout>
+                          </StackLayout>
+                        </Frame>                        
+                        <StackLayout Margin="0,10">
+                            <Button Text="Publish" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding PublishCommand}"/>
+                        </StackLayout>                    
+                </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

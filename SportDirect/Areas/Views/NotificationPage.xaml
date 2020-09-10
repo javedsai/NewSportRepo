@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" mc:Ignorable="d"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:Controls="clr-namespace:SportDirect.Controls" xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView" xmlns:proc="clr-namespace:PanCardView.Processors;assembly=PanCardView" xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             x:Class="SportDirect.Areas.Views.NotificationPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="60,*">
+            <StackLayout     
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Notification" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+
+            <ScrollView Grid.Row="1">       
+            <StackLayout Margin="10">
+                <CollectionView ItemsSource="{Binding NotificationData}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="6">
+                                <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource DefaultLabelStyle}"/>
+                                        <Label Text="{Binding Date}" VerticalOptions="CenterAndExpand" FontSize="14" Style="{StaticResource DefaultLabelStyle2}"/>
+                                        <BoxView Style="{StaticResource BoxViewStyle}"/>
+                                    </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

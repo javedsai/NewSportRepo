@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False" BackgroundImageSource="BgImage"  
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:Lang="clr-namespace:SportDirect.Resources"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="SportDirect.Areas.Authentication.Views.LoginPage">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <yummy:PancakeView  BackgroundGradientAngle="10" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#F1F2F2" CornerRadius="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Image Margin="0,10,0,0" Source="logo" VerticalOptions="Center" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
+                        <StackLayout VerticalOptions="Center" Margin="30,10" Orientation="Vertical">
+                            <Frame Padding="6" Margin="0,14" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                    Margin="12"
+                                    Aspect="AspectFit"
+                                    Source="email"
+                                        Grid.Column="0"
+                                    VerticalOptions="Center" />
+                                    <controls:BorderlessEntry  
+                                        
+                        Style="{DynamicResource DefaultEntryStyle }" Grid.Column="1"
+                         FontFamily="{DynamicResource QuicksandMediumFont}" Keyboard="Email"
+                        HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" Placeholder="{Lang:Translate EmailAddressTxt}" Text="{Binding Email}" />
+
+
+                                </Grid>
+                            </Frame>
+                            <Frame Padding="6" HasShadow="False" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+
+
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ffimageloadingsvg:SvgCachedImage
+                                    Margin="12"
+                                    Aspect="AspectFit"
+                                    Source="padlock.svg"
+                                    VerticalOptions="Center" />
+                                    <controls:BorderlessEntry  
+                                        Grid.Column="1"       
+                                        HeightRequest="40"
+                                        IsPassword="{Binding Ispwd}"
+                                        Placeholder="********"
+                              Style="{DynamicResource DefaultEntryStyle }"
+                              FontFamily="{DynamicResource QuicksandMediumFont}"
+                              HorizontalOptions="FillAndExpand"  Margin="20,0,10,0" 
+                               Text="{Binding Password}" />
+
+                                    <Image
+                                    Grid.Column="2"
+                                    Margin="0,0,10,0"
+                                    HeightRequest="20"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="{Binding ImageVisible}"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding password_showCommand}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+
+                            </Frame>
+                            <Label Margin="0,5" Text="{translate:Translate ForgotPassword}"  Style="{StaticResource DefaultLabelStyle2}"
+                               FontFamily="{DynamicResource RobotoRegularFont}" VerticalOptions="Center" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ForgotPassword}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <StackLayout>
+                                <Button Text="{Lang:Translate SigninTxt}" Margin="0,6" BackgroundColor="#00679C" Style="{DynamicResource DefaultButtonStyle2}" Command="{Binding SigninCommand}"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <Button Text="{Lang:Translate createnewaccountTxt}" Margin="0,6" Style="{DynamicResource DefaultButtonStyle2}" Command="{Binding NewaccountCommand}" />
+                            </StackLayout>
+                            <!--<Label Text="OR" Margin="5,5,5,0"  TextColor="Black" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}"/>
+                            <Label Text="LOGIN WITH" Margin="5,0" FontSize="15"  TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}"/>
+                            <Grid Margin="85,0,85,25">
+                                <Grid Grid.Column="0">
+                                    <Image Source="Facebook" Margin="0,6" WidthRequest="80"  HeightRequest="80" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text="Facebook" FontSize="12" TextColor="#00679C" VerticalOptions="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle2}"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FacebookCommand}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Image Source="Google" Margin="0,6" WidthRequest="80" HeightRequest="80" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text="Google" Margin="5,0" TextColor="Red" FontSize="12" VerticalOptions="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle2}"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoogleCommand}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </Grid>-->
+
+                            <Label Text="{Lang:Translate For any technical help}" Margin="5,0" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle2}"/>
+                            <Image Source="Helpicon" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="{Lang:Translate callTxt}" Margin="5,0" FontSize="15" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

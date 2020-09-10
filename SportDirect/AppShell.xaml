@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SportDirect.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SportDirect.Controls;assembly=SportDirect"
+    xmlns:views="clr-namespace:SportDirect;assembly=SportDirect" xmlns:views1="clr-namespace:SportDirect.Areas.Views" 
+    NavigationPage.HasNavigationBar="false"  Shell.NavBarIsVisible="False"
+    FlyoutHeaderBehavior="CollapseOnScroll"    
+    Style="{StaticResource ShellBaseStyle}">
+    <Shell.FlyoutHeader>
+        <controls:StudentFlyoutHeader BindingContext="{Binding StudentBasicInfo}" />
+    </Shell.FlyoutHeader>
+    <TabBar 
+        Title="Home"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="home"
+        Route="root">
+        <Tab Title="home" Icon="home">
+            <ShellContent Route="Home">
+                <views1:Home />
+            </ShellContent>
+        </Tab>
+        <Tab Title="News" Icon="news">
+            <ShellContent Route="News">
+                <views1:OffersPage/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Blog" Icon="blog">
+            <ShellContent Route="BlogsPage">
+                <views1:BlogsPage />
+            </ShellContent>
+        </Tab>
+       
+        <Tab Title="Account" Icon="account">
+            <ShellContent  Route="ProfilePage">
+                <views1:ProfilePage />
+            </ShellContent>
+        </Tab> 
+    </TabBar>
+    <!--<FlyoutItem Title="Animals"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Monkeys"
+                      Icon="cart.png"
+                      ContentTemplate="{DataTemplate views:MainPage}" />
+        <ShellContent Title="Elephants"
+                      Icon="cart.png"
+                      ContentTemplate="{DataTemplate views:MainPage}" />
+        <ShellContent Title="Bears"
+                      Icon="cart.png"
+                      ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>-->
+    <!--<ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate student:StudentProfilePage}"
+        Icon="account.png"
+        Route="studentprofilepage" />
+    <ShellContent
+        Title="MyNotes"
+        ContentTemplate="{DataTemplate studentNotes:StudentNotesOnSalePage}"
+        Icon="notes.png"
+        Route="studentnotesonsalepage" />
+    <MenuItem
+        Command="{Binding LogoutCommand}"
+        Icon="account.png"
+        Text="Logout" />-->
+</Shell>

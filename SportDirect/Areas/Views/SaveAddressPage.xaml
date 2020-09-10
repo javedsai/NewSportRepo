@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SportDirect.Areas.Views.SaveAddressPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SportDirect.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:translate="clr-namespace:SportDirect.Resources"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="thispage"
+    ios:Page.UseSafeArea="true"
+    material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+    BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout
+                Margin="0,0,0,5"
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton
+                        Margin="10"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding GetBackCommand}"
+                        HeightRequest="24"
+                        HorizontalOptions="Start"
+                        Source="back"
+                        VerticalOptions="Center"
+                        WidthRequest="24" />
+                    <Label
+                        Margin="5,0"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource DefaultLabelStyle}"
+                        Text="Saved Address"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}" />
+            </StackLayout>
+
+            <ScrollView>
+                <StackLayout Margin="20,0">
+                    <StackLayout Margin="0,20" Orientation="Vertical">
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Name"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding Name}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"
+                                Placeholder="Mobile Number"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding MobileNumber}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Address"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding Address}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Organization"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding Organization}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Street"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding Street}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="City"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding City}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                        <Frame
+                            Margin="0,5"
+                            Padding="6"
+                            BorderColor="Gray"
+                            HeightRequest="38"
+                            Style="{DynamicResource FrameStyle}">
+                            <controls:BorderlessEntry
+                                Margin="20,0,10,0"
+                                FontFamily="{DynamicResource QuicksandBoldFont}"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"
+                                Placeholder="Pincode"
+                                PlaceholderColor="#4B4B4B"
+                                Style="{DynamicResource DefaultEntryStyle}"
+                                Text="{Binding Pincode}"
+                                TextColor="#4B4B4B" />
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Margin="0,20">
+                        <Button
+                            Command="{Binding SavedCommand}"
+                            Style="{DynamicResource DefaultButtonStyle}"
+                            Text="Saved &amp; Checkout" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

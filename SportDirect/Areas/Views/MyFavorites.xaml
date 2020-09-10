@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:translate="clr-namespace:SportDirect.Resources" x:Name="thispage"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true" BackgroundColor="{DynamicResource CommonPageBackgroundColor}"             
+            material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+            xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="SportDirect.Areas.Views.MyFavorites">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" RowDefinitions="60,*">
+            <StackLayout Margin="8,0">
+                <Grid HeightRequest="50" ColumnDefinitions="1*,7*,2*">
+                    <ImageButton  Source="back" Padding="0"  BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24" Command="{Binding GetBackCommand }"/>
+                    <Label Grid.Column="1" Text="My Favorites" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20"/>
+                    <Label Grid.Column="2" Text="Edit" Padding="5" VerticalOptions="Center" HorizontalOptions="End"
+                         Style="{StaticResource DefaultLabelStyle2}" FontSize="16">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EditCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout> 
+
+            <Grid Margin="8,20" Grid.Row="1">
+                <Grid>
+                    <CollectionView HorizontalScrollBarVisibility="Never" ItemsSource="{Binding MyFavoritesList}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="10" Span="2"  />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid>
+                                            <StackLayout>
+                                                <Frame BorderColor="Transparent" Style="{StaticResource FrameStyle}" BackgroundColor="Gray" HeightRequest="200" HasShadow="False">
+                                                    <forms:CachedImage  Source="{Binding Image }" Aspect="Fill" ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon"/>
+                                                </Frame>
+                                                <StackLayout>
+                                                    <Label TextType="Text" MaxLines="2" Style="{DynamicResource DefaultLabelStyle}" Text="{Binding Title }" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>
+                                                    <StackLayout Spacing="2" Orientation="Horizontal" HorizontalOptions="Start">
+                                                        <Image  Source="{Binding star1}" HeightRequest="10" WidthRequest="10"  VerticalOptions="Center"/>
+                                                        <Image Source="{Binding star2}" HeightRequest="10" WidthRequest="10"  VerticalOptions="Center"/>
+                                                        <Image Source="{Binding star3}" HeightRequest="10" WidthRequest="10"  VerticalOptions="Center"/>
+                                                        <Image Source="{Binding star4}" HeightRequest="10" WidthRequest="10"  VerticalOptions="Center"/>
+                                                        <Image  Source="{Binding star5}" HeightRequest="10" WidthRequest="10"  VerticalOptions="Center" />
+                                                    </StackLayout>
+                                                    <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="{Binding Price }" VerticalOptions="Center" TextColor="#006A9D" HorizontalOptions="Start" FontSize="13"/>
+
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.MyFavoritesCommand, Source={x:Reference thispage}}" />
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                        <ImageButton Margin="10" Source="{Binding Favorite}" BackgroundColor="White" Padding="6" CornerRadius="15" HeightRequest="30" WidthRequest="30" VerticalOptions="Start" HorizontalOptions="End" CommandParameter="{Binding .}"
+                                         Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference thispage}}"/>
+
+                                    </Grid>
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductCommand, Source={x:Reference thispage}}" />
+                                    </StackLayout.GestureRecognizers>-->
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid> 
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

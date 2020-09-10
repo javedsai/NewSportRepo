@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False" BackgroundImageSource="BgImage"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"
+              x:Class="SportDirect.Areas.Views.SignupPage">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <yummy:PancakeView  BackgroundGradientAngle="10" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#F1F2F2" CornerRadius="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Margin="30,0" >
+                        <Image Margin="0,10,0,0" Source="logo" VerticalOptions="Center" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
+                        <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
+                            <Frame Padding="25,15" BorderColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Style="{DynamicResource FrameStyle}">
+                                <StackLayout>
+                                    <Image Source="Layer_2" HeightRequest="70" WidthRequest="70" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text="Individual" VerticalOptions="CenterAndExpand" FontSize="16" Style="{StaticResource DefaultLabelStyle}"/>
+                                </StackLayout>
+                            </Frame>
+                            <StackLayout>
+                                <ImageButton Margin="10" Source="{Binding UnCheckImage}"  VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Command="{Binding IndividualCommand}"/>                                
+                            </StackLayout>
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.2*"/>
+                                    <ColumnDefinition Width="8.8*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Padding="4">
+                                    <ImageButton Margin="0" Source="{Binding CheckImage}" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding DropdownDataCommand}"/>
+                                </Grid>
+                          
+                            <Frame Grid.Column="1" Padding="6" Margin="0,8" Style="{DynamicResource FrameStyle}" HeightRequest="38">
+                                <Grid Margin="10,0" IsEnabled="False">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                        <controls:AppPicker  ItemsSource="{Binding AcademyName}"  ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectAcademy}"
+                                                 x:Name="picker" FontFamily="{StaticResource QuicksandBoldFont}"                                      
+                                                 Title="Select Academy" FontSize="16" HorizontalOptions="StartAndExpand"
+                                                 TextColor="Black" 
+                                                 TitleColor="Black"
+                                                 VerticalOptions="Center"> 
+                                    </controls:AppPicker>
+                                    <Image Grid.Column="1" Source="dropdown" VerticalOptions="Center"  HorizontalOptions="End"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout VerticalOptions="EndAndExpand">
+                            <Button Text="Submit" Margin="0,40"  Style="{DynamicResource DefaultButtonStyle2}"  Command="{Binding SubmitCommand}" />
+                            </StackLayout>                       
+                    </StackLayout>
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

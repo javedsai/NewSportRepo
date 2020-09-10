@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:translate="clr-namespace:SportDirect.Resources" x:Name="thispage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" BackgroundColor="{DynamicResource CommonPageBackgroundColor}" NavigationPage.HasNavigationBar="False"
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"         
+             x:Class="SportDirect.Areas.Views.Contactus">
+    <ContentPage.Content>
+        <Grid RowDefinitions="60,*">
+            <StackLayout Margin="0,0,0,0"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                    <Label Text="Contact us" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20" />
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxViewStyle}"/>
+            </StackLayout>
+
+            <ScrollView Grid.Row="1"> 
+                <StackLayout>
+                    <Grid>
+                        <Grid>
+                            <Image Source="Untitled" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+
+                        <Frame Margin="20,150,20,0" Padding="10" Style="{DynamicResource FrameStyle}" HasShadow="True"
+                        HeightRequest="270"   BorderColor="White" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                            <StackLayout>
+                                <Entry Text="{Binding Name}" Placeholder="Name" VerticalOptions="Center" HorizontalOptions="FillAndExpand" TextColor="Gray"/>
+                                <Entry Text="{Binding Email}" Keyboard="Email" MaxLength="20" Placeholder="Email" VerticalOptions="Center" HorizontalOptions="FillAndExpand" TextColor="Gray"/>
+                                <Entry Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Phone" VerticalOptions="Center" HorizontalOptions="FillAndExpand" TextColor="Gray"/>
+                                <Entry Text="{Binding Message}" Keyboard="Chat" Placeholder="Message" VerticalOptions="Center" HorizontalOptions="FillAndExpand" TextColor="Gray"/>
+                                <Button Margin="60,10" Text="Submit" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding SubmitCommand}"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                    <StackLayout Margin="20,0,20,10" Orientation="Vertical">
+                        <Label Margin="0,15" TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="3W Giant Mart inc.(Sportdirect.ca)" HorizontalOptions="Center" FontSize="15"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Carparate Office:1-800-393-2795" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Toll-Free:1-866-895-2761" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="Fax: 1-866-895-2761" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15"/>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle}" Text="E-mail :info [at] giantmart.com" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15"/>
+
+                        <StackLayout Margin="0,10" Orientation="Horizontal">
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Style="{DynamicResource DefaultLabelStyle}" Text="Note. " FontSize="15"/>
+                                        <Span Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding NoteDescreptions}" FontSize="14"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label> 
+                        </StackLayout>
+                        <Label TextType="Text" Style="{DynamicResource DefaultLabelStyle2}" Text="{Binding NoteDescreptions1}" HorizontalOptions="Start" FontSize="14"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

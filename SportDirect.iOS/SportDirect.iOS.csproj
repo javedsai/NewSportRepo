@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{410A18D2-9C0F-42D2-B402-E56C6CCFEB69}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ClassBuzzApp.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>SportDirect.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>
+    </CodesignProvision>
+    <CodesignKey>
+    </CodesignKey>
+    <CodesignExtraArgs>
+    </CodesignExtraArgs>
+    <DeviceSpecificBuild>
+    </DeviceSpecificBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <WarningsNotAsErrors>
+    </WarningsNotAsErrors>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="iOSIoCConfig.cs" />
+    <Compile Include="Renderers\AppEntryRenderer.cs" />
+    <Compile Include="Renderers\AppPickerRenderer.cs" />
+    <Compile Include="Renderers\BorderlessDatePickerRender.cs" />
+    <Compile Include="Renderers\ImageCircleRenderer.cs" />
+    <Compile Include="NSDataStream.cs" />
+    <Compile Include="Renderers\RoundedCornerViewRenderer.cs" />
+    <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\AppSearchBarRenderer.cs" />
+    <Compile Include="PreviewControllerDS.cs" />
+    <Compile Include="Renderers\StatusBarImplementation.cs" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Quicksand-Bold.ttf" />
+    <BundleResource Include="Resources\Quicksand-Light.ttf" />
+    <BundleResource Include="Resources\Quicksand-Medium.ttf" />
+    <BundleResource Include="Resources\Quicksand-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CardsView">
+      <Version>2.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="GraphQL.Client">
+      <Version>3.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft">
+      <Version>3.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.FilePicker">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.9" />
+    <PackageReference Include="MvvmLightLibs">
+      <Version>5.4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>6.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Multilingual">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Plugin.FilePicker">
+      <Version>2.1.41</Version>
+    </PackageReference>
+    <PackageReference Include="CarouselView.FormsPlugin">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.442</Version>
+    </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.2.0.223</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>2.4.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\SportDirect\SportDirect.csproj">
+      <Project>{AC010B94-56A6-43D8-84E8-750D6FE3AEBA}</Project>
+      <Name>SportDirect</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\amex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\applepay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ArenasIcerinks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Basketball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BgImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BgImage.png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BgImage.png%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BlackForward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Blogs1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Blogs2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Blogs3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Blogs4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boxe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CheckGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CheckRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chevronright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cicedepoutre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cities.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\COMMENT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\crash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\crash2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Customers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\customers1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Delivery truck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Delivery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Deliverytruck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\divider_panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dropdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Fitness.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Foamshapes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\golfcourse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Google.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gpay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Gymnasium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Gymnasiummats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gymnastic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hamberger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Helpicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\kinder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Layer_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LinerDrowndrown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LoadIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MartialArts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mastercard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menuclose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\news.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Outdoorcenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paypal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plusexpender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Products.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Products1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\productview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profileicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profilepic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Promotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Promotionblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProtectiveNetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProtectivePadding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Returnproduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Satisfaction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\schoolboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SG2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SplashScreenSportDirect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sports1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SportsBags.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Storage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sucsess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Tennis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tennisnet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\thumbnail_foam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Uncheck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\unfilledStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wishlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wishlistgrey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoInternet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Barcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BookInstallation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\facebookblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\instagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pinterest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tumblr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\offer2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\offerblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\offergrey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrowblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sharegrey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Untitled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\referemail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\track_order_circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trackordergray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrowbackred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Helpred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Promotiored.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Quotered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plusred.png" />
+  </ItemGroup>
+</Project>

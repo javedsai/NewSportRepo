@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"  x:Name="thispage"  xmlns:translate="clr-namespace:SportDirect.Resources"
+             NavigationPage.HasNavigationBar="False" 
+             material:MaterialNavigationPage.StatusBarColor="{DynamicResource CommonPageBackgroundColor}"
+             BackgroundColor="{DynamicResource CommonPageBackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"
+             x:Class="SportDirect.Areas.Views.EditSaveAddress">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <StackLayout Margin="0,0,0,5"                
+                HeightRequest="60"
+                Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Source="back" Padding="0" Margin="10" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="24" WidthRequest="24"   Command="{Binding GetBackCommand }"/>
+                        <Label Text="Saved address" Margin="5,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle}" FontSize="20" />
+                    </StackLayout>
+                    <BoxView Style="{StaticResource BoxViewStyle}"/>
+                </StackLayout>
+
+                <StackLayout Margin="20,10">
+                    <yummy:PancakeView BorderThickness="2" HasShadow="False" Padding="6" Margin="0,5" BorderColor="Gray" Style="{DynamicResource SettingsPancakeViewStyle}" HeightRequest="42">
+                        <Label Text="Add New Address" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  Style="{StaticResource DefaultLabelStyle}" />
+                        <yummy:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddNewCommand}"/>
+                        </yummy:PancakeView.GestureRecognizers>
+                    </yummy:PancakeView>
+                </StackLayout>
+ 
+                <StackLayout Margin="20,10">
+                    <CollectionView ItemsSource="{Binding EditAddressList}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Margin="0,10">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Title}" FontSize="16" VerticalOptions="Center" HorizontalOptions="Start"  Style="{StaticResource DefaultLabelStyle}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Label Text="Edit" Padding="5" FontSize="14" TextColor="#00679C" VerticalOptions="Center" HorizontalOptions="Start"  Style="{StaticResource DefaultLabelStyle}" />
+                                                 <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer CommandParameter="{Binding .}"  Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference thispage}}" />
+                                                </StackLayout.GestureRecognizers> 
+                                            </StackLayout>
+                                            <StackLayout Margin="20,0">
+                                                <Label Text="Remove" Padding="5" Margin="10,0" FontSize="14" TextColor="#FF0000" VerticalOptions="Center" HorizontalOptions="Start"  Style="{StaticResource DefaultLabelStyle}" />
+                                                  <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference thispage}}" />
+                                            </StackLayout.GestureRecognizers>  
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <BoxView Style="{StaticResource BoxViewStyle}"/>
+                                    </StackLayout>                                    
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout> 
+              
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand" Margin="20,10">
+                <Button Text="Done" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding DoneCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

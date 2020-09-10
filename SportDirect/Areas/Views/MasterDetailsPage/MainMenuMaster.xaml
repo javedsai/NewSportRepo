@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             xmlns:lang="clr-namespace:SportDirect.Resources"
+             xmlns:local1="clr-namespace:SportDirect.Areas.Views"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="SportDirect.Areas.Views.MasterDetailsPage.MainMenuMaster">
+    <StackLayout>
+        <StackLayout>
+            <Grid>
+                <Grid>
+                    <yummy:PancakeView Margin="0,0,25,0" HeightRequest="230" BackgroundGradientAngle="180" 
+                     BackgroundGradientStartColor="#D4283A" 
+                     BackgroundGradientEndColor="#D4283A" CornerRadius="0,25,0,25" 
+                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid Margin="5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="profileicon.png" Aspect="Fill" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <StackLayout Spacing="1" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Column="1"  Orientation="Vertical">
+                                <Label Style="{DynamicResource DefaultLabelStyle }" VerticalOptions="End" FontSize="14" TextColor="White" Text="{Binding FullName}"/>
+                                <Label Margin="0,0,6,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle2 }" VerticalTextAlignment="Start" VerticalOptions="Start"
+                             TextColor="White" Text="{lang:Translate SportdirectcaPlusMemeberTxt}"/>
+                                <Label Margin="0,2,10,2" FontSize="12"  Style="{DynamicResource DefaultLabelStyle }" VerticalTextAlignment="Start" VerticalOptions="Start"
+                             TextColor="White" Text="{Binding Email}"  LineBreakMode="TailTruncation"/>
+                                <Label Margin="0,0,10,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle }" VerticalTextAlignment="Start" VerticalOptions="Start"
+                             TextColor="White" Text="{lang:Translate BenefitsTxt}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HeightRequest="6" WidthRequest="6" CornerRadius="3" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="0"/>
+                                    <Label Margin="0,0,5,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle2 }" VerticalTextAlignment="Start" VerticalOptions="Start" TextColor="White" Text="{lang:Translate Pre-launch_access_to_productsTxt}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HeightRequest="6" WidthRequest="6" CornerRadius="3" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="0"/>
+                                    <Label Margin="0,0,5,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle2 }" VerticalTextAlignment="Start" VerticalOptions="Start" TextColor="White" Text="{lang:Translate Member_only_promotionsTxt}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HeightRequest="6" WidthRequest="6" CornerRadius="3" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="0"/>
+                                    <Label Margin="0,0,5,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle2 }" VerticalTextAlignment="Start" VerticalOptions="Start" TextColor="White" Text="{lang:Translate Reduced_shippingTxt}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HeightRequest="6" WidthRequest="6" CornerRadius="3" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="0"/>
+                                    <Label Margin="0,0,5,0" FontSize="10"  Style="{DynamicResource DefaultLabelStyle2 }" VerticalTextAlignment="Start" VerticalOptions="Start" TextColor="White" Text="{lang:Translate Personalized_experienceTxt}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </yummy:PancakeView>
+                </Grid>
+                <ImageButton Source="menuclose" Margin="0,0,2,0" HeightRequest="50" WidthRequest="50" HorizontalOptions="End" Command="{Binding IsPresentFalseCommand2}" VerticalOptions="Center" BackgroundColor="Transparent"/>
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Margin="10">
+                    <StackLayout Margin="10,5" Orientation="Horizontal">
+                        <Image Source="Barcode" HeightRequest="15" WidthRequest="15" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                        <Label Text="{lang:Translate Barcode_scanTxt}" VerticalOptions="Center" HorizontalOptions="Start"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BarcodeScanCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Expander>
+                        <Expander.Header>
+                            <StackLayout>
+                                <Grid Margin="10,8,20,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="Promotionblack.png" Grid.Column="0" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="Promotiored"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Label Text="{lang:Translate PromotionTxt}" Style="{DynamicResource DefaultLabelStyle }" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1" >
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="TextColor" Value="#D4283A"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Image Source="plusexpender.png" Grid.Column="2" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="plusred"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
+                                <StackLayout.Triggers>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="#FFEDEF"/>
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                            </StackLayout>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <StackLayout BackgroundColor="#FFEDEF">
+                                <Grid Margin="10,0,20,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <ImageButton Source="arrowbackred.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Grid.Row="0" Command="{Binding OnSaleCommand}"/>
+                                    <Label Grid.Column="1" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate On_SaleTxt}" Grid.Row="0" FontSize="13">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OnSaleCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Image Source="arrowbackred.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Grid.Row="1">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ReferFriendCommand}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Grid.Column="1" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate Refer_a_friendTxt}" Grid.Row="1" FontSize="13">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ReferFriendCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </StackLayout>
+                        </Expander.Content>
+                    </Expander>
+
+                    <Expander>
+                        <Expander.Header>
+                            <StackLayout>
+                                <Grid Margin="10,8,20,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="Quote.png" Grid.Column="0" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="Quotered"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Label Text="{lang:Translate Quote}" Style="{DynamicResource DefaultLabelStyle }"  Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="TextColor" Value="#D4283A"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Image Source="plusexpender.png" Grid.Column="2" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="plusred"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
+                                <StackLayout.Triggers>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="#FFEDEF"/>
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                            </StackLayout>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <StackLayout BackgroundColor="#FFEDEF">
+                                <Grid Margin="10,0,20,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <ImageButton Source="arrowbackred.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Grid.Row="0" Command="{Binding SimpleCommand}"/>
+                                    <Label Grid.Column="1"  Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate SimpleTxt}" Grid.Row="0" FontSize="13">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SimpleCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <ImageButton Source="arrowbackred.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Grid.Row="1" Command="{Binding ComplexCommand}"/>
+                                    <Label Grid.Column="1" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate ComplexTxt}" Grid.Row="1" FontSize="13" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ComplexCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </StackLayout>
+                        </Expander.Content>
+                    </Expander>
+
+                    <Expander>
+                        <Expander.Header>
+                            <StackLayout>
+                                <Grid Margin="10,8,20,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="Help.png" Grid.Column="0" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="Helpred"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Label Text="{lang:Translate HelpTxt}" Style="{DynamicResource DefaultLabelStyle }" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="TextColor" Value="#D4283A"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Image Source="plusexpender.png" Grid.Column="2" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="plusred"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
+                                <StackLayout.Triggers>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="#FFEDEF"/>
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                            </StackLayout>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <StackLayout HorizontalOptions="CenterAndExpand" BackgroundColor="#FFEDEF">
+                                <Grid Margin="10,0,20,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton Source="arrowbackred.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Grid.Row="0" Command="{Binding OrderTrackingCommand}"/>
+                                    <Label Grid.Column="1" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate Order_TrackingTxt}" Grid.Row="0" FontSize="13" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OrderTrackingCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <ImageButton Source="arrowbackred.png"  Grid.Row="1" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Command="{Binding FAQCommand}"/>
+                                    <Label Grid.Column="1" Text="{lang:Translate FAQ_Txt}" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Grid.Row="1" FontSize="13">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding FAQCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <ImageButton Source="arrowbackred.png"  Grid.Row="2" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Command="{Binding Contactusommand}"/>
+                                    <Label Grid.Column="1" Style="{DynamicResource DefaultLabelStyle2 }" TextColor="#ff6666" Text="{lang:Translate Contact_us_Txt}"  Grid.Row="2" FontSize="13" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Contactusommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </StackLayout>
+                        </Expander.Content>
+                    </Expander>
+                    <StackLayout Margin="10,8" Orientation="Horizontal">
+                        <Image Source="BookInstallation" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                        <Label Text="{lang:Translate Book_InstallationTxt}"  Style="{DynamicResource DefaultLabelStyle }"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BookInstallationCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Margin="10,8" Orientation="Horizontal">
+                        <Image Source="Logout.png" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                        <Label Text="{lang:Translate LogoutTxt}" Style="{DynamicResource DefaultLabelStyle }"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Margin="10,8" Orientation="Horizontal">
+                        <Image Source="Setting.png" HeightRequest="16" WidthRequest="16" VerticalOptions="Center" HorizontalOptions="Start"></Image>
+                        <Label Text="{lang:Translate SettingTxt}" VerticalOptions="Center" HorizontalOptions="Start"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SettingCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <BoxView Margin="0" Style="{StaticResource BoxViewStyle}"/>
+                    <Grid Margin="10,8,20,10">
+                        <Label Text="{lang:Translate About_us_Txt}" VerticalOptions="Center" HorizontalOptions="Start"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AboutUsCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,8">
+                        <Label Text="{lang:Translate Terms_of_use}" VerticalOptions="Center" HorizontalOptions="Start"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TermsCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{lang:Translate Privacy_and_securityTxt}" VerticalOptions="Center" HorizontalOptions="Start"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PrivacySecurityCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{lang:Translate Our_PoliciesTxt}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OurPoliciesCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{lang:Translate Warning_and_adviceTxt}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding WarningCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{lang:Translate Business_locationTxt}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BusinessLocationCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid Margin="10,8,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{lang:Translate Live_customer_serviceTxt}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"  Style="{DynamicResource DefaultLabelStyle }" />
+                        <Image Grid.Column="1" Source="backarrow.png" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LiveCustomerServiceCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <BoxView Margin="0,8" Style="{StaticResource BoxViewStyle}"/>
+                    <Grid Margin="60,0,60,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ImageButton Source="facebookblack" HeightRequest="20" WidthRequest="20" Command="{Binding FacebookCommand}" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <ImageButton Source="instagram" HeightRequest="20" WidthRequest="20"  Command="{Binding InstagramCommand}" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <ImageButton Source="twitter" HeightRequest="20" WidthRequest="20"  Command="{Binding TwitterCommand}" Grid.Column="2" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <ImageButton Source="pinterest" HeightRequest="20" WidthRequest="20"  Command="{Binding PinterestCommand}" Grid.Column="3" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <ImageButton Source="tumblr" HeightRequest="20" WidthRequest="20"  Command="{Binding TumblrCommand}" Grid.Column="4" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

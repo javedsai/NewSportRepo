@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="SportDirect.Controls.StudentFlyoutHeader"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SportDirect.Controls;assembly=SportDirect"
+    xmlns:language="clr-namespace:SportDirect.Resources;assembly=SportDirect">
+    <ContentView.Content>
+        <Grid BackgroundColor="{StaticResource PrimaryColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:CircleImage
+                Grid.Row="0"
+                Grid.Column="0"
+                WidthRequest="100"
+                HeightRequest="100"
+                Aspect="AspectFill"
+                Source="{Binding ProfilePic}"
+                HorizontalOptions="Center" />
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="FillAndExpand">
+                <Label
+                    FontSize="{StaticResource FontSizeMedium}"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding UserName}"
+                    TextColor="{StaticResource Primary2Color}"
+                    HorizontalOptions="Center" />
+                <Label
+                    FontSize="{StaticResource FontSizeMedium}"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Email}"
+                    TextColor="{StaticResource Primary2Color}"
+                    HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

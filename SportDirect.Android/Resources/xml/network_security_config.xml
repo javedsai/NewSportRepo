@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">54.210.238.184</domain>
+      <!--Set application-wide security config using base-config tag.-->
+      <base-config cleartextTrafficPermitted="true"/>
+    </domain-config>
+</network-security-config>

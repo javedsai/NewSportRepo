@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+x:Class="SportDirect.App"
+xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+xmlns:controls="clr-namespace:SportDirect.Controls;assembly=SportDirect"
+xmlns:converters="clr-namespace:SportDirect.Core.Converters;assembly=SportDirect.Core"
+xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+mc:Ignorable="d">
+<Application.Resources> 
+        <!-- FontFamily --> 
+   <OnPlatform x:Key="QuicksandRegularFont" x:TypeArguments="x:String">
+    <On Platform="Android" Value="Quicksand-Regular.ttf#Quicksand-Regular" />
+    <On Platform="iOS" Value="Quicksand-Regular" />
+</OnPlatform>
+   <OnPlatform x:Key="QuicksandMediumFont" x:TypeArguments="x:String">
+    <On Platform="Android" Value="Quicksand-Medium.ttf#Quicksand-Medium" />
+    <On Platform="iOS" Value="Quicksand-Medium" />
+</OnPlatform>
+  <OnPlatform x:Key="QuicksandBoldFont" x:TypeArguments="x:String">
+  <On Platform="Android" Value="Quicksand-Bold.ttf#Quicksand-Bold" />
+  <On Platform="iOS" Value="Quicksand-Bold" />
+</OnPlatform> 
+<!-- Colors -->
+<Color x:Key="CommonPageBackgroundColor">White</Color>
+ <Color x:Key="OurClientPageBackgroundColor">#CED6E0</Color>
+ <Color x:Key="PreLoginPage1BackgroundColor">#DFDADA</Color>
+<Color x:Key="PreLoginPage2BackgroundColor">#f6f4ee</Color>
+<Color x:Key="PreLoginPag3BackgroundColor">#DCDCDB</Color>
+
+<Color x:Key="PrimaryColor">White</Color>
+<Color x:Key="Primary2Color">Black</Color>
+<Color x:Key="Primary3Color">Gray</Color>
+<Color x:Key="RedColor">#FE0006</Color>
+<Color x:Key="Btn1BgColor">#00679C</Color>
+<Color x:Key="Btn1TextColor">White</Color>
+    
+<Color x:Key="Btn2BgColor">#EB0027</Color>
+<Color x:Key="Btn2TextColor">White</Color>
+<Color x:Key="Btn3BgColor">Transparent</Color>
+<Color x:Key="Btn3TextColor">Red</Color>
+<Color x:Key="FrameBgColor">White</Color>
+<Color x:Key="FrameBorderColor">WhiteSmoke</Color>
+ <!--<Color x:Key="FrameBg1Color">#F5F6FA</Color>-->
+ <Color x:Key="FrameBorder1Color">Gray</Color>
+<Color x:Key="FrameBg2Color">#CCD6E0</Color>
+<Color x:Key="FrameBorder2Color">WhiteSmoke</Color>
+<Color x:Key="BoxViewBgColor">#f2f2f2</Color>
+<Color x:Key="PancakeBgColor">White</Color>
+<Color x:Key="PancakeBorderColor">WhiteSmoke</Color>
+<Color x:Key="PancakeBg1Color">#F8D3A9</Color>
+<Color x:Key="PancakeBorder1Color">WhiteSmoke</Color>
+
+<Color x:Key="ShellTitleColor">#00679C</Color>
+<Color x:Key="ShallTabBarTitleColor">#00679C</Color>
+<Color x:Key="ShellTabBarUnselectedColor">#C7C6CC</Color>
+<Color x:Key="ShellBgColor">#E67020</Color>
+<Color x:Key="ShellTabBarBgColor">WhiteSmoke</Color>
+<Color x:Key="ShellForegroundColor">White</Color>
+
+
+<Color x:Key="TextColor">White</Color>
+<Color x:Key="Text2Color">#5C5C5C</Color>
+<Color x:Key="Text3Color">#F2681A</Color>
+<Color x:Key="Text2ColorBold">#585858</Color>
+
+<Color x:Key="AccentColor">#E67020</Color>
+<Color x:Key="Accent2Color">#F49813</Color>
+<Color x:Key="Accent3Color">#D8D8D8</Color>
+<Color x:Key="PrimaryPlaceholderColor">#FBD9BD</Color>
+<Color x:Key="DefaultBorderColor">#DBDBDB</Color>
+<Color x:Key="ErrorTextColor">#D0021B</Color>
+<Color x:Key="AuthEntryBGColor">#F6A651</Color>
+<Color x:Key="StartGradientColor">#E6AE2d</Color>
+<Color x:Key="EndGradientColor">#F26419</Color>
+
+<!-- Font sizes -->
+<x:Double x:Key="FontSizeExtraSmall">9</x:Double>
+<x:Double x:Key="FontSizeSmall">12</x:Double>
+<x:Double x:Key="FontSizeMedium">14</x:Double>
+<x:Double x:Key="FontSizeLarge">16</x:Double>
+<x:Double x:Key="FontSizeExtraLarge">18</x:Double>
+<x:Double x:Key="FontSizeIcon">54</x:Double>
+
+<Style x:Key="DefaultEntryStyle" TargetType="controls:BorderlessEntry">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="TextColor"  Value="{DynamicResource Primary3Color}" />
+            <Setter Property="PlaceholderColor" Value="#A569BD" />    
+</Style>
+
+  <Style x:Key="DefaultEntryStyle2" TargetType="controls:BorderlessEntry">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="TextColor"  Value="{DynamicResource Primary2Color}" />
+            <Setter Property="PlaceholderColor" Value="#A569BD" />    
+</Style>
+
+<Style x:Key="AuthenticationEntryStyle" TargetType="controls:AppEntry">
+<Setter Property="HeightRequest" Value="{x:OnPlatform Android=50, iOS=50}" />
+<Setter Property="BorderWidth" Value="0" />
+<Setter Property="PlaceholderColor" Value="{StaticResource PrimaryPlaceholderColor}" />
+<Setter Property="BackgroundColor" Value="{StaticResource AuthEntryBGColor}" />
+<Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+<Setter Property="CornerRadius" Value="5" />
+<Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+<Setter Property="BorderColor" Value="Transparent" />
+</Style>
+<Style x:Key="AuthenticationPickerStyle" TargetType="controls:AppPicker">
+<Setter Property="HeightRequest" Value="{x:OnPlatform Android=50, iOS=50}" />
+<Setter Property="TitleColor" Value="{StaticResource PrimaryPlaceholderColor}" />
+<Setter Property="BackgroundColor" Value="{StaticResource AuthEntryBGColor}" />
+<Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+<Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+</Style>
+
+<Style x:Key="ProfileSettingEntryStyle" TargetType="material:MaterialTextField">
+<Setter Property="FloatingPlaceholderEnabled" Value="true" />
+<Setter Property="FloatingPlaceholderFontSize" Value="{StaticResource FontSizeSmall}" />
+<Setter Property="HelperText" Value="" />
+<Setter Property="ErrorText" Value="" />
+<Setter Property="AlwaysShowUnderline" Value="true" />
+<Setter Property="BackgroundColor" Value="Transparent" />
+<Setter Property="PlaceholderColor" Value="{StaticResource Text2ColorBold}" />
+<Setter Property="TextColor" Value="{StaticResource Text2Color}" />
+<Setter Property="TextFontSize" Value="{StaticResource FontSizeSmall}" />
+<Setter Property="TintColor" Value="{StaticResource AccentColor}" />
+<Setter Property="UnderlineColor" Value="{StaticResource Text2ColorBold}" />
+<Setter Property="ShouldAnimateUnderline" Value="false" />
+</Style>
+
+<Style x:Key="FrameStyle" TargetType="Frame">
+<Setter Property="BackgroundColor" Value="{DynamicResource FrameBgColor}" />
+<Setter Property="BorderColor" Value="{DynamicResource FrameBorderColor}" />
+<Setter Property="CornerRadius" Value="10" />
+<Setter Property="HasShadow" Value="True" />
+<Setter Property="IsClippedToBounds" Value="True" />       
+<Setter Property="Padding" Value="0" />
+    <Setter Property="HasShadow" Value="False"/>
+    <Setter Property="IsClippedToBounds" Value="True"/>
+</Style>
+ <Style x:Key="FrameStyle1" TargetType="Frame">
+<!--<Setter Property="BackgroundColor" Value="{DynamicResource FrameBg1Color}" />-->
+<Setter Property="BorderColor" Value="{DynamicResource FrameBorder1Color}" />
+<Setter Property="CornerRadius" Value="10" />
+<Setter Property="HasShadow" Value="True" />
+<Setter Property="IsClippedToBounds" Value="True" />
+<Setter Property="Padding" Value="0" />
+      <Setter Property="HasShadow" Value="False"/>
+      <Setter Property="IsClippedToBounds" Value="True"/>
+ </Style>
+ <Style x:Key="FrameStyle2" TargetType="Frame">
+<Setter Property="BackgroundColor" Value="{DynamicResource FrameBg2Color}" />
+<Setter Property="BorderColor" Value="{DynamicResource FrameBorder2Color}" />
+<Setter Property="CornerRadius" Value="10" />
+<Setter Property="HasShadow" Value="True" />
+ <Setter Property="Padding" Value="0" />
+      <Setter Property="HasShadow" Value="False"/>
+      <Setter Property="IsClippedToBounds" Value="True"/>
+ </Style>
+    
+<Style x:Key="BoxViewStyle" TargetType="BoxView"> 
+<Setter Property="Margin" Value="0,5" />
+<Setter Property="VerticalOptions" Value="CenterAndExpand" />
+<Setter Property="BackgroundColor" Value="{DynamicResource BoxViewBgColor }" />
+<Setter Property="HeightRequest" Value="1" />
+</Style>
+
+<Style x:Key="DefaultButtonStyle" TargetType="Button">
+<Setter Property="BorderWidth" Value="0" />
+<Setter Property="CornerRadius" Value="10" />
+<Setter Property="BorderColor" Value="Transparent" />
+<Setter Property="FontFamily" Value="{StaticResource QuicksandBoldFont}" />
+<Setter Property="BackgroundColor" Value="{DynamicResource Btn1BgColor}" />
+<Setter Property="TextColor" Value="{DynamicResource Btn1TextColor}" />
+<Setter Property="FontSize" Value="14" />
+<Setter Property="HeightRequest" Value="{x:OnPlatform Android=54, iOS=54}" />
+</Style>
+
+<Style x:Key="DefaultButtonStyle2" TargetType="Button">
+<Setter Property="BorderWidth" Value="0" />
+<Setter Property="CornerRadius" Value="25" />
+<Setter Property="BorderColor" Value="Transparent" />
+<Setter Property="FontFamily" Value="{StaticResource QuicksandMediumFont}" />
+<Setter Property="BackgroundColor" Value="{DynamicResource Btn2BgColor}" />
+<Setter Property="TextColor" Value="{DynamicResource Btn2TextColor}" />
+<Setter Property="FontSize" Value="14" />
+<Setter Property="HeightRequest" Value="{x:OnPlatform Android=54, iOS=54}" />
+</Style>
+
+<Style x:Key="DefaultLabelStyle" TargetType="Label">
+<Setter Property="TextColor" Value="#424242" /><!--black-->
+<Setter Property="FontFamily" Value="{StaticResource QuicksandBoldFont}" />
+<Setter Property="FontSize" Value="15" /> 
+</Style>
+    
+<Style x:Key="DefaultLabelStyle2" TargetType="Label">
+<Setter Property="TextColor" Value="{DynamicResource Primary3Color}" /><!--Gray-->
+<Setter Property="FontSize"  Value="15" />
+<Setter Property="FontFamily" Value="{StaticResource QuicksandMediumFont}" />
+<Setter Property="TextType" Value="Text" />
+</Style>
+<Style x:Key="CommonWhiteColor" TargetType="Label">
+<Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+</Style>
+<Style x:Key="CommonRedColor" TargetType="Label">
+<Setter Property="TextColor" Value="{DynamicResource RedColor}" />
+<Setter Property="FontSize" Value="60" />
+<Setter Property="FontAttributes" Value="Bold" />
+</Style>
+
+<Style x:Key="SettingsPancakeViewStyle" TargetType="yummy:PancakeView">
+<Setter Property="HasShadow" Value="true" />
+<Setter Property="BackgroundColor" Value="{DynamicResource PancakeBgColor}" />
+<Setter Property="BorderColor" Value="{DynamicResource PancakeBorderColor}" />
+<Setter Property="BorderThickness" Value="1"/>
+<Setter Property="CornerRadius" Value="10" />
+<Setter Property="Padding" Value="0" />
+<Setter Property="IsClippedToBounds" Value="true" />
+<Setter Property="HorizontalOptions" Value="FillAndExpand" />
+</Style>
+<Style x:Key="SettingsPancakeViewStyle1" TargetType="yummy:PancakeView">
+<Setter Property="HasShadow" Value="true" />
+<Setter Property="BackgroundColor" Value="{DynamicResource PancakeBg1Color}" />
+<Setter Property="BorderColor" Value="{DynamicResource PancakeBorder1Color}" />
+<Setter Property="BorderThickness" Value="1"/>
+<Setter Property="Padding" Value="0" />
+</Style>
+
+<Style x:Key="ShellBaseStyle" TargetType="Element">
+<Setter Property="Shell.BackgroundColor" Value="{DynamicResource ShellBgColor}" />
+<Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource ShellTabBarBgColor}" />
+<Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource ShallTabBarTitleColor}" />
+<Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource ShellTabBarUnselectedColor}" />
+<Setter Property="Shell.ForegroundColor" Value="{DynamicResource ShellForegroundColor}" />
+<Setter Property="Shell.TitleColor" Value="{DynamicResource ShellTitleColor}" />
+<Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+<Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+</Style>
+<!--<Style x:Key="ShellBaseStyle" TargetType="Element">
+<Setter Property="Shell.BackgroundColor" Value="{StaticResource AccentColor}" />
+<Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource PrimaryColor}" />
+<Setter Property="Shell.TabBarTitleColor" Value="Red" />
+<Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource Primary2Color}" />
+<Setter Property="Shell.ForegroundColor" Value="{StaticResource PrimaryColor}" />
+<Setter Property="Shell.TitleColor" Value="{StaticResource PrimaryColor}" />
+<Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+<Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+</Style>-->
+
+<!-- Converters -->
+
+<converters:InverseBooleanConverter x:Key="inverseBoolConv" />
+
+</Application.Resources>
+</Application>
