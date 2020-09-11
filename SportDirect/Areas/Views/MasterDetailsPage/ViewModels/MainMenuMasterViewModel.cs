@@ -2,10 +2,12 @@
 using SportDirect.Areas.Authentication.Views;
 using SportDirect.Assets;
 using SportDirect.Helpers;
+using SportDirect.Service.Interfaces;
 using SportDirect.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -15,6 +17,7 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
 {
     public class MainMenuMasterViewModel : BasePageViewModel
     {
+        IApiService _apiService;
         private string _facebookLink;
         public string FacebookLink
         {
@@ -45,9 +48,10 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
             get { return _tumblr; }
             set { _tumblr = value; RaisePropertyChanged(); }
         }
-        public MainMenuMasterViewModel()
+        public MainMenuMasterViewModel(IApiService apiService)
         {
-            FillUserDetailsAsync();
+            _apiService = apiService;
+          //  FillUserDetailsAsync();
             FacebookLink = "https://www.facebook.com/";
             Instagram = "https://www.instagram.com/accounts/login/?hl=en";
             Twitter = "https://twitter.com/login";
@@ -264,6 +268,10 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
             get { return _fullName; }
             set { _fullName = value; RaisePropertyChanged(); }
         }
+
+
+
+
         public async System.Threading.Tasks.Task FillUserDetailsAsync()
         {
             try
@@ -279,6 +287,46 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
             {
                 UserDialogs.Instance.Alert(ex.Message.ToString());
             }
+        }
+
+        //Api To Get UserInformation
+        public async Task InitializeData()
+        {
+            UserDialogs.Instance.ShowLoading();
+         
+                try
+                {
+                    string queryid_id = "{ customer(customerAccessToken:\"" + Settings.Customer_Access_Token + "\"){ id firstName lastName phone email createdAt } }";
+                    var res = await _apiService.CustomerInfo(queryid_id);
+               
+                    if (res.data != null)
+                    {
+                        if (!string.IsNullOrEmpty(Convert.ToString(res.data.customer.id)))
+                        {
+                            FullName = res.data.customer.firstName + res.data.customer.lastName;
+                            Email = res.data.customer.email;
+                            Settings.Customer_Email = res.data.customer.email;
+                            //App.Locator.ProfilePage.InitializeUserInfo(res.data.customer);
+                            //App.Locator.AccountSettinPage.InitializeUserInfo(res.data.customer);
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.Alert("Please enter the valid emailid and password.", "Error", "Ok");
+                        }
+                    }
+                    else
+                    {
+                        //UserDialogs.Instance.Alert("Server not connected", "Error", "Ok");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                    UserDialogs.Instance.Alert(ex.Message.ToString());
+                }
+            
+          
+            UserDialogs.Instance.HideLoading();
         }
     }
 }

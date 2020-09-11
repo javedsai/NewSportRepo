@@ -44,8 +44,14 @@ namespace SportDirect.Areas.ViewModels
             set { _title = value; RaisePropertyChanged(nameof(Title)); }
         }
 
-        private ObservableCollection<CollectionProductListDataProducts> _productList;
-        public ObservableCollection<CollectionProductListDataProducts> ProductList
+        //private ObservableCollection<CollectionProductListDataProducts> _productList;
+        //public ObservableCollection<CollectionProductListDataProducts> ProductList
+        //{
+        //    get { return _productList; }
+        //    set { _productList = value; RaisePropertyChanged(); }
+        //}     
+        private CollectionProductListDataProducts _productList;
+        public CollectionProductListDataProducts ProductList
         {
             get { return _productList; }
             set { _productList = value; RaisePropertyChanged(); }
@@ -97,12 +103,14 @@ namespace SportDirect.Areas.ViewModels
             string modifiedCollectionName = quote + type + quote;
             try
             {
-                string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:4 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:20 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                 var res = await _apiService.GetCollectionListData(queryid_id);
                 if (res?.data?.shop?.collectionByHandle != null)
                 {
-                    ProductList = new ObservableCollection<CollectionProductListDataProducts>();
-                    ProductList.Add(res?.data?.shop?.collectionByHandle?.products);
+                    ProductList = new CollectionProductListDataProducts();
+                    ProductList.edges=(res?.data?.shop?.collectionByHandle?.products.edges);
+                    ProductList.pageInfo=(res?.data?.shop?.collectionByHandle?.products.pageInfo);
+
                     Title = res?.data?.shop?.collectionByHandle?.title;
                 }
                 else
@@ -120,8 +128,10 @@ namespace SportDirect.Areas.ViewModels
             _isSearchtWay = false;
             _Condition = condition;
             _Name = name;
-            ProductList = new ObservableCollection<CollectionProductListDataProducts>();
-            ProductList.Add(dataProducts);
+            ProductList = new CollectionProductListDataProducts();
+            ProductList.edges = (dataProducts.edges);
+            ProductList.pageInfo = (dataProducts.pageInfo);
+
             RaisePropertyChanged(nameof(ProductList));
         }
         public async Task InitilizeDataForSearch(string SearchText)
@@ -133,12 +143,13 @@ namespace SportDirect.Areas.ViewModels
             {
                 char t = '"';
                 var type = t + SearchText + t;
-                string queryid_id = "{ shop{ products(first: 10, query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
+                string queryid_id = "{ shop{ products(first: 20, query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
                 var res = await _apiService.SortListOfProduct(queryid_id);
                  if (res.data.shop.products.edges.Count > 0)
                 {
-                    ProductList = new ObservableCollection<CollectionProductListDataProducts>();
-                    ProductList.Add(res?.data?.shop?.products);
+                    ProductList = new CollectionProductListDataProducts();
+                    ProductList.edges = (res?.data?.shop?.products?.edges);
+                    ProductList.pageInfo = (res?.data?.shop?.products.pageInfo);
                 }
                 else
                 {
@@ -155,9 +166,8 @@ namespace SportDirect.Areas.ViewModels
         public ICommand ThresoldCommand => new Command(async (obj) =>
         {
             UserDialogs.Instance.ShowLoading();
-            var getlastElement = ProductList.LastOrDefault();
-            if (getlastElement.pageInfo.hasNextPage)
-                GetCollection(getlastElement.edges.LastOrDefault().cursor);
+            if (ProductList.pageInfo.hasNextPage)
+                GetCollection(ProductList.edges.LastOrDefault().cursor);
             else
                 UserDialogs.Instance.Toast("No More Data Available");
             UserDialogs.Instance.HideLoading();
@@ -173,20 +183,20 @@ namespace SportDirect.Areas.ViewModels
                     char t = '"';
                     var type = t + _searchText + t;
                     string modifiedAfterCursor1 = t + afterData + t;
-                    string queryid_id = "{ shop{ products(first: 10 after:" + modifiedAfterCursor1 + ", query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
+                    string queryid_id = "{ shop{ products(first: 20 after:" + modifiedAfterCursor1 + ", query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
                     var res = await _apiService.SortListOfProduct(queryid_id);
                     if (res.data.shop.products.edges.Count > 0)
                     {
-                        var result = ProductList.FirstOrDefault();
                         foreach(var item in res.data.shop.products.edges)
                         {
-                            if(!result.edges.Any(s=>s.node.id == item.node.id))
+                            var data = ProductList.edges.Any(s => s.node.id.Equals(item.node.id));
+                            if (!data)
                             {
-                                result.edges.Add(item);
+                                ProductList.edges.Add(item);
                             }
                         }
-                        result.edges.AddRange(res.data.shop.products.edges);
-                        RaisePropertyChanged(nameof(ProductList));
+                        //result.edges.AddRange(res.data.shop.products.edges);
+                        RaisePropertyChanged(nameof(ProductList.edges));
                     }
                     else
                     {
@@ -209,14 +219,19 @@ namespace SportDirect.Areas.ViewModels
                 {
                     string queryid_id;
                     if (string.IsNullOrEmpty(_Condition) && string.IsNullOrEmpty(_Name))
-                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:10 after:" + modifiedAfterCursor + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:20 after:" + modifiedAfterCursor + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                     else
-                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:10 after:" + modifiedAfterCursor + "," + "sortKey:" + _Name + "," + "reverse: " + _Condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:20 after:" + modifiedAfterCursor + "," + "sortKey:" + _Name + "," + "reverse: " + _Condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                     var res = await _apiService.GetCollectionListData(queryid_id);
                     if (res.data.shop.collectionByHandle != null)
                     {
-                        var result = ProductList.FirstOrDefault();
-                        result.edges.AddRange(res.data.shop.collectionByHandle.products.edges);
+                        foreach (var item in res.data.shop.collectionByHandle.products.edges)
+                        {
+                            if (!ProductList.edges.Any(s => s.node.id == item.node.id))
+                            {
+                                ProductList.edges.Add(item);
+                            }
+                        }
                     }
                     else
                     {

@@ -37,9 +37,8 @@ namespace SportDirect.Service.Interfaces
         Task<CartUpdateResponseModel> UpdateCart(string query, CartUpdateRequestModel request);
         Task<CartUpdateResponseModel> DeleteCart(string query, CartDeleteRequestModel request);
         Task GetFeatureCollection(string queryid_id);
-
-
-
+        Task<ForgetModelResponse> ForgetPassword(string query, ForgetModelRequest obj_create);
+        Task<CustomerDetailResponse> CustomerInfo(string queryid_id);
     }
 }
 

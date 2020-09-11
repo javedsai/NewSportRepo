@@ -66,12 +66,42 @@ namespace SportDirect.Areas.ViewModels
 
         public async void FillUser()
         {
-            List<Customer_Sqlite> obj_new = new List<Customer_Sqlite>();
-            obj_new = await App.Database.GetCustomer();
-            ProfileName = Convert.ToString(obj_new[0].firstName) + " " + Convert.ToString(obj_new[0].lastName);
-            ProfileEmail = Convert.ToString(obj_new[0].email);
-            PhoneNumber = obj_new[0].phone;
-            Password = "*******";
+            UserDialogs.Instance.ShowLoading();
+
+            try
+            {
+                string queryid_id = "{ customer(customerAccessToken:\"" + Settings.Customer_Access_Token + "\"){ id firstName lastName phone email createdAt } }";
+                var res = await _apiService.CustomerInfo(queryid_id);
+
+                if (res.data != null)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(res.data.customer.id)))
+                    {
+                        ProfileName = res.data.customer.firstName + res.data.customer.lastName;
+                        ProfileEmail = res.data.customer.email;
+                        PhoneNumber = res.data.customer.phone;
+                        Settings.Customer_Email = res.data.customer.email;
+                        //App.Locator.ProfilePage.InitializeUserInfo(res.data.customer);
+                        //App.Locator.AccountSettinPage.InitializeUserInfo(res.data.customer);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Alert("Please enter the valid emailid and password.", "Error", "Ok");
+                    }
+                }
+                else
+                {
+                    //UserDialogs.Instance.Alert("Server not connected", "Error", "Ok");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                UserDialogs.Instance.Alert(ex.Message.ToString());
+            }
+
+
+            UserDialogs.Instance.HideLoading();
         }
 
 
@@ -111,6 +141,11 @@ namespace SportDirect.Areas.ViewModels
              if (!ProfileName.Contains(" "))
              {
                  await ShowAlert("Enter first name and last name with space");
+                 return;
+             }
+             if (PhoneNumber == null)
+             {
+                 await ShowAlert("Enter valid phone number");
                  return;
              }
              if (string.IsNullOrEmpty(PhoneNumber) && PhoneNumber.Length < 5 && PhoneNumber.Length > 15)

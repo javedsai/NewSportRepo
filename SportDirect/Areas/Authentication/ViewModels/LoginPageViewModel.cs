@@ -69,8 +69,7 @@ namespace SportDirect.Areas.Authentication.ViewModels
 
         public ICommand ForgotPassword => new Command((obj) =>
         {
-            // await App.Current.MainPage.Navigation.PushAsync(new CheckInternetPage());
-            UserDialogs.Instance.Alert("In progress");
+              App.Current.MainPage.Navigation.PushModalAsync(new ForgetPasswordPage());
         });
         private IApiService _apiService;
         public ICommand SigninCommand => new Command(async (obj) =>

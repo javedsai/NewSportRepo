@@ -14,6 +14,8 @@ using XF.Material.Forms.UI.Dialogs.Configurations;
 using Plugin.Connectivity;
 using SportDirect.Areas.Views.MasterDetailsPage;
 using Acr.UserDialogs;
+using SportDirect.Services;
+using SportDirect.Core.Helpers;
 
 namespace SportDirect.ViewModels
 {
@@ -235,5 +237,19 @@ namespace SportDirect.ViewModels
             result = await MaterialDialog.Instance.ConfirmAsync(message: message, title: title, confirmingText: confirm, dismissiveText: dismitive, configuration: alertDialogConfiguration);
             return result;
         }
+
+        //protected bool CheckConnection(bool AlertIfNot = false)
+        //{
+        //    if (ConnectivityService.IsConnected())
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        if (AlertIfNot)
+        //            ThreadingHelpers.InvokeOnMainThread(() => { UserDialogs.Instance.Alert("No Internet Connection", "Offline!"); });
+        //        return false;
+        //    }
+        //}
     }
 }

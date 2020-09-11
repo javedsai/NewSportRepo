@@ -22,6 +22,7 @@ namespace SportDirect.Areas.Views
             InitializeComponent();
             MaterialNavigationPage.SetHasNavigationBar(this, false);
 
+
         }
         protected override bool OnBackButtonPressed()
         {

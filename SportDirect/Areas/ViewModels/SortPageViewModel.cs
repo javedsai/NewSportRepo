@@ -57,7 +57,7 @@ namespace SportDirect.Areas.ViewModels
                 var condition = _sortPageModel.Condition.ToString().ToLower();
                 char t = '"';
                 type = t + type + t;
-                string queryid_id = "{shop {name collectionByHandle(handle:" + type + ") {title products(first:5," + "sortKey:" + name + "," + "reverse: " + condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                string queryid_id = "{shop {name collectionByHandle(handle:" + type + ") {title products(first:20," + "sortKey:" + name + "," + "reverse: " + condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                 // string queryid_id = "{ shop{ products(first: 50, query:" + type + ",sortKey:" + name + ",reverse:" + condition + "){edges{node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
                 var res = await _apiService.GetCollectionListData(queryid_id);
                 if (res != null)

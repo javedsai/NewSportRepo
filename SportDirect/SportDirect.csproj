@@ -50,6 +50,9 @@
     <EmbeddedResource Include="Resources\settings.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Areas\Authentication\Views\ForgetPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Areas\Authentication\Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

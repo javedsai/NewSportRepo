@@ -87,25 +87,7 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SortCommand}" />
                         </Grid.GestureRecognizers>
-                        <!--<Grid Grid.Column="1" IsVisible="false">
-                            <Image
-                                Margin="8,0"
-                                HeightRequest="18"
-                                HorizontalOptions="Start"
-                                Source="filter"
-                                VerticalOptions="Center"
-                                WidthRequest="18" />
-                            <Label
-                                Margin="8,0,0,0"
-                                FontSize="14"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource DefaultLabelStyle2}"
-                                Text="Filter"
-                                VerticalOptions="CenterAndExpand" />
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding FilterCommand}" />
-                            </Grid.GestureRecognizers>
-                        </Grid>-->
+
                     </Grid>
                 </Frame>
             </Grid>
@@ -116,8 +98,8 @@
                         Margin="0,12"
                         EmptyView="No Data found"
                         HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding ProductList[0].edges}"
-                        RemainingItemsThreshold="5"
+                        ItemsSource="{Binding ProductList.edges, Mode=TwoWay}"
+                        RemainingItemsThreshold="2"
                         RemainingItemsThresholdReachedCommand="{Binding ThresoldCommand}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
@@ -162,34 +144,7 @@
                     </CollectionView>
                 </Grid>
 
-                <!--<Grid IsVisible="{Binding GridIsvisible}" ColumnDefinitions="4.4*,2.8*,2.8*">
-                    <yummy:PancakeView CornerRadius="0,0,10,10" BorderColor="#F8F8F6" BorderThickness="2" BackgroundColor="#F8F8F6" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-                        <Grid Margin="8,4,8,12">
-                            <Grid ColumnDefinitions="3.6*,.8*">
-                                <Label Text="New Arrivals" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
-                                <Image Source="{Binding ImageNewArrivals}" Grid.Column="1"  Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
 
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NewArrivalsCommand}"/>
-                                </Grid.GestureRecognizers>
-                            </Grid>
-                            <Grid Grid.Row="1" ColumnDefinitions="3.6*,.8*">
-                                <Label Text="Featured" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
-                                <Image Source="{Binding ImageFeatured}" Grid.Column="1" Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding FeaturedCommand}"/>
-                                </Grid.GestureRecognizers>
-                            </Grid>
-                            <Grid Grid.Row="2" ColumnDefinitions="3.6*,.8*">
-                                <Label Text="Bestsellers" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource DefaultLabelStyle2}" FontSize="14"/>
-                                <Image Source="{Binding ImageBestsellers}" Grid.Column="1" Margin="0" HeightRequest="18" WidthRequest="18" VerticalOptions="Center" HorizontalOptions="Start" />
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BestsellersCommand}"/>
-                                </Grid.GestureRecognizers>
-                            </Grid>
-                        </Grid>
-                   </yummy:PancakeView>
-                </Grid>-->
             </Grid>
 
 

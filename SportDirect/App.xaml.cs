@@ -39,6 +39,7 @@ namespace SportDirect
             _navigationService = Container.GetInstance<Services.Interfaces.INavigationService>();            
             _navigationService.InitializeAsync();
             //MainPage = new NavigationPage(new OffersPage());
+           
             if (!CrossConnectivity.Current.IsConnected)
              {
                  App.Current.MainPage.Navigation.PushAsync(new CheckInternetPage());

@@ -91,33 +91,35 @@ namespace SportDirect.Areas.ViewModels
         public async Task GetCollectionList()
         {
             UserDialogs.Instance.ShowLoading();
-            try
-            {
-                string queryid_id = "{shop {name collections(first: 50) {edges {node { id handle image {id originalSrc} title }}}}}";
-                var res = await _apiService.GetCollection(queryid_id);
-                if (res != null)
+          
+                try
                 {
-                    CategoriesImagesList = new ObservableCollection<CategoryCommonModel>();
-                    foreach(var item in res?.data?.shop?.collections?.edges)
+                    string queryid_id = "{shop {name collections(first: 50) {edges {node { id handle image {id originalSrc} title }}}}}";
+                    var res = await _apiService.GetCollection(queryid_id);
+                    if (res != null)
                     {
-                        CategoriesImagesList.Add(new CategoryCommonModel
+                        CategoriesImagesList = new ObservableCollection<CategoryCommonModel>();
+                        foreach (var item in res?.data?.shop?.collections?.edges)
                         {
-                            Id = item.node.id,
-                            image = string.IsNullOrEmpty(item?.node?.image?.originalSrc)? "Sports1.png" : item?.node?.image?.originalSrc,
-                            title = item.node.title,
-                            handle = item.node.handle
-                        });
+                            CategoriesImagesList.Add(new CategoryCommonModel
+                            {
+                                Id = item.node.id,
+                                image = string.IsNullOrEmpty(item?.node?.image?.originalSrc) ? "Sports1.png" : item?.node?.image?.originalSrc,
+                                title = item.node.title,
+                                handle = item.node.handle
+                            });
+                        }
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Toast("No colletion data found");
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    UserDialogs.Instance.Toast("No colletion data found");
+                    UserDialogs.Instance.Alert("Internal Server Error");
                 }
-            }
-            catch (Exception)
-            {
-                UserDialogs.Instance.Alert("Internal Server Error");
-            }
+           
             UserDialogs.Instance.HideLoading();
         }
 
@@ -133,74 +135,82 @@ namespace SportDirect.Areas.ViewModels
         public async Task GetFeaturedProductList()
         {
             UserDialogs.Instance.ShowLoading();
-            try
-            {
-                var result = await GetProductByHandler("featured-products");
-                List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
-                foreach (var item in result)
+           
+                try
                 {
-                    List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
-                    foreach (var val in item.edges)
+                    var result = await GetProductByHandler("featured-products");
+                    List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
+                    foreach (var item in result)
                     {
-                        CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
+                        List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
+                        foreach (var val in item.edges)
                         {
-                            cursor = val.cursor,
-                            node = val.node
-                        };
-                        req.Add(d1);
-                        if (req.Count == 3)
-                            break;
+                            CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
+                            {
+                                cursor = val.cursor,
+                                node = val.node
+                            };
+                            req.Add(d1);
+                            if (req.Count == 3)
+                                break;
+                        }
+                        data.Add(new CollectionProductListDataProducts
+                        {
+                            edges = req,
+                            pageInfo = item.pageInfo
+                        });
                     }
-                    data.Add(new CollectionProductListDataProducts
-                    {
-                        edges = req,
-                        pageInfo = item.pageInfo
-                    });
+                    FeaturedProduct = new ObservableCollection<CollectionProductListDataProducts>(data);
                 }
-                FeaturedProduct = new ObservableCollection<CollectionProductListDataProducts>(data);
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert(ex.Message.ToString());
-            }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.Alert(ex.Message.ToString());
+               }
+            
+           
+           
             UserDialogs.Instance.HideLoading();
 
         }
         public async Task GetNewProductList()
         {
             UserDialogs.Instance.ShowLoading();
-            try
-            {
-                var result = await GetProductByHandler("new-arrivals");
-                List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
-                foreach(var item in result)
+          
+                try
                 {
-                    List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
-                    foreach (var val in item.edges)
+                    var result = await GetProductByHandler("new-arrivals");
+                    List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
+                    foreach (var item in result)
                     {
-                        CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
+                        List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
+                        foreach (var val in item.edges)
                         {
-                            cursor = val.cursor,
-                            node = val.node
-                        };
-                        req.Add(d1);
-                        if (req.Count == 3)
-                            break;
+                            CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
+                            {
+                                cursor = val.cursor,
+                                node = val.node
+                            };
+                            req.Add(d1);
+                            if (req.Count == 3)
+                                break;
+                        }
+                        data.Add(new CollectionProductListDataProducts
+                        {
+                            edges = req,
+                            pageInfo = item.pageInfo
+                        });
                     }
-                    data.Add(new CollectionProductListDataProducts
-                    {
-                        edges = req,
-                        pageInfo = item.pageInfo
-                    });
+                    NewArrivalList = new ObservableCollection<CollectionProductListDataProducts>(data);
                 }
-                NewArrivalList = new ObservableCollection<CollectionProductListDataProducts>(data);
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert(ex.Message.ToString());
-            }
+                catch (Exception ex)
+                {
+                   
+                    UserDialogs.Instance.Alert(ex.Message.ToString());
+                }
+            
+           
+           
             UserDialogs.Instance.HideLoading();
 
         }
@@ -307,22 +317,24 @@ namespace SportDirect.Areas.ViewModels
             ObservableCollection<CollectionProductListDataProducts> response = new ObservableCollection<CollectionProductListDataProducts>();
             char quote = '"';
             string modifiedCollectionName = quote + type + quote;
-            try
-            {
-                string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:5 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
-                var res = await _apiService.GetCollectionListData(queryid_id);
-                if (res?.data?.shop?.collectionByHandle != null)
+           
+                try
                 {
-                    response.Add(res?.data?.shop?.collectionByHandle?.products);
+                    string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:5 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                    var res = await _apiService.GetCollectionListData(queryid_id);
+                    if (res?.data?.shop?.collectionByHandle != null)
+                    {
+                        response.Add(res?.data?.shop?.collectionByHandle?.products);
+                    }
+                    else
+                    {
+                    }
                 }
-                else
+                catch
                 {
+                    await ShowAlert("Internal Server Error");
                 }
-            }
-            catch
-            {
-                await ShowAlert("Internal Server Error");
-            }
+                
             return response;
         }
     }

@@ -141,9 +141,21 @@ namespace SportDirect.Service.Services
             return res;
         }
 
+        public async Task<ForgetModelResponse> ForgetPassword(string query, ForgetModelRequest forgetModelRequest)
+        {
+            var res = await PostAsynGraphql<ForgetModelRequest, ForgetModelResponse>(query, forgetModelRequest);
+            return res;
+        }
+
         public Task GetFeatureCollection(string queryid_id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<CustomerDetailResponse> CustomerInfo(string queryid_id)
+        {
+            var res = await PostAsynWithOutvariable<CustomerDetailResponse>(queryid_id);
+            return res;
         }
     }
 }

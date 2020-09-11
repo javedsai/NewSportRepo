@@ -30,7 +30,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid RowDefinitions="60,Auto">
+        <Grid RowDefinitions="1*,9*">
             <StackLayout>
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
@@ -80,8 +80,7 @@
                 </Grid>
                 <BoxView Style="{StaticResource BoxViewStyle}" />
             </StackLayout>
-
-            <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand">
+            <ScrollView Grid.Row="1">
                 <StackLayout>
                     <StackLayout Margin="8,0" Orientation="Vertical">
                         <StackLayout HeightRequest="180">
@@ -232,9 +231,8 @@
                                                     HeightRequest="240"
                                                     HorizontalOptions="Center"
                                                     Style="{DynamicResource FrameStyle}"
-                                                    VerticalOptions="Center"
                                                     WidthRequest="154">
-                                                    <StackLayout>
+                                                    <StackLayout Spacing="5">
                                                         <forms:CachedImage
                                                             Margin="0,16"
                                                             Aspect="AspectFill"
@@ -248,15 +246,18 @@
                                                         <Label
                                                             FontSize="14"
                                                             HorizontalOptions="Start"
+                                                            MaxLines="3"
                                                             Text="{Binding node.title}"
                                                             TextColor="Black"
                                                             TextType="Text"
-                                                            VerticalOptions="Center" />
+                                                            VerticalOptions="StartAndExpand" />
                                                         <Grid Padding="6">
                                                             <Label
-                                                                FontSize="16"
+                                                                FontSize="13"
                                                                 HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
                                                                 Style="{DynamicResource DefaultLabelStyle2}"
+                                                                TextColor="#00679C"
                                                                 TextType="Text"
                                                                 VerticalOptions="End">
                                                                 <Label.FormattedText>
@@ -316,20 +317,17 @@
                             </Grid>
 
                             <StackLayout Margin="0,8" VerticalOptions="Center">
-                                <CollectionView
-                                    EmptyView="No data found"
-                                    HorizontalScrollBarVisibility="Never"
-                                    ItemsSource="{Binding NewArrivalList[0].edges}">
-                                    <CollectionView.ItemsLayout>
+                                <StackLayout BindableLayout.ItemsSource="{Binding NewArrivalList[0].edges}">
+                                    <!--<CollectionView.ItemsLayout>
                                         <GridItemsLayout
                                             HorizontalItemSpacing="10"
                                             Orientation="Vertical"
                                             VerticalItemSpacing="10" />
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
+                                    </CollectionView.ItemsLayout>-->
+                                    <BindableLayout.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout>
-                                                <Grid>
+                                                <Grid HeightRequest="125">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="3.3*" />
                                                         <ColumnDefinition Width="5.4*" />
@@ -341,7 +339,8 @@
                                                         BorderColor="Transparent"
                                                         HasShadow="False"
                                                         HeightRequest="100"
-                                                        Style="{StaticResource FrameStyle}">
+                                                        Style="{StaticResource FrameStyle}"
+                                                        VerticalOptions="StartAndExpand">
                                                         <forms:CachedImage
                                                             Aspect="Fill"
                                                             ErrorPlaceholder="LoadIcon"
@@ -351,7 +350,7 @@
                                                     <StackLayout
                                                         Grid.Column="1"
                                                         Margin="0,10"
-                                                        VerticalOptions="CenterAndExpand">
+                                                        VerticalOptions="StartAndExpand">
                                                         <Label
                                                             FontSize="14"
                                                             HorizontalOptions="Start"
@@ -380,7 +379,8 @@
                                                     <Grid
                                                         Grid.Column="2"
                                                         ColumnSpacing="0"
-                                                        IsVisible="{Binding StackLayoutIsVisible}">
+                                                        IsVisible="{Binding StackLayoutIsVisible}"
+                                                        VerticalOptions="Start">
                                                         <ImageButton
                                                             BackgroundColor="Transparent"
                                                             Command="{Binding MinusCommand}"
@@ -409,7 +409,8 @@
                                                     <StackLayout
                                                         Grid.Column="2"
                                                         IsVisible="{Binding StackLayoutIsVisible1}"
-                                                        Orientation="Horizontal">
+                                                        Orientation="Horizontal"
+                                                        VerticalOptions="CenterAndExpand">
                                                         <Frame
                                                             Padding="6,0"
                                                             BorderColor="#D4283A"
@@ -417,6 +418,7 @@
                                                             HasShadow="False"
                                                             HeightRequest="30"
                                                             HorizontalOptions="Fill"
+                                                            IsVisible="false"
                                                             Style="{StaticResource FrameStyle}"
                                                             VerticalOptions="Center"
                                                             WidthRequest="90">
@@ -428,9 +430,9 @@
                                                                 Text="Add"
                                                                 TextType="Text"
                                                                 VerticalOptions="Center" />
-                                                            <!--<Frame.GestureRecognizers>
-                                                                <TapGestureRecognizer Command="{Binding AddCartCommand}" CommandParameter="{Binding .}" />
-                                                            </Frame.GestureRecognizers>-->
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.AddCartCommand, Source={x:Reference thispage}}" CommandParameter="{Binding .}" />
+                                                            </Frame.GestureRecognizers>
                                                         </Frame>
                                                     </StackLayout>
                                                 </Grid>
@@ -439,8 +441,8 @@
                                                 </StackLayout.GestureRecognizers>
                                             </StackLayout>
                                         </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
@@ -449,166 +451,3 @@
         </Grid>
     </ContentPage.Content>
 </ContentPage>
-
-<!--<ScrollView>
-            <StackLayout Margin="10">
-                <StackLayout IsClippedToBounds="True" HeightRequest="240" Margin="0,10">
-                    <Grid>
-                        <Frame HeightRequest="220" Margin="0,0" IsClippedToBounds="True" Padding="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="Transparent" CornerRadius="10">
-                            <forms:CachedImage  Source="{Binding BgImage}" Aspect="Fill" ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon"/>
-                        </Frame>
-                        <StackLayout Spacing="0" Margin="60,70,60,60" VerticalOptions="Center">
-                            <Label Margin="0,0,0,0" Text="SportDirect" Style="{DynamicResource CommonRedColor}" VerticalOptions="Start" HorizontalOptions="Center" />
-                            <Label Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Taglinetxt}" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" FontSize="20" MaxLines="1" />
-                        </StackLayout>
-                    </Grid>
-                </StackLayout>
-
-                    <Frame Margin="0,8" Padding="1" HasShadow="True" Style="{DynamicResource FrameStyle}" CornerRadius="10">
-                    <StackLayout Margin="10" Orientation="Vertical">
-                        <Label TextType="Text" Margin="4" Style="{DynamicResource DefaultLabelStyle}" FontFamily="{DynamicResource RobotoBoldFont}" Text="{Binding FrontHeading}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24"/>
-                        <Label Margin="4" Style="{DynamicResource DefaultLabelStyle2}" FontFamily="{DynamicResource RobotoRegularFont}"
-                             Text="{Binding FrontDesc}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextType="Html" FontSize="16"/>
-                        <BoxView Margin="4" Style="{DynamicResource BoxViewStyle }" VerticalOptions="Center" />
-                        <Grid>
-                            <StackLayout Margin="0,10">
-                                <forms:CachedImage HeightRequest="50" WidthRequest="50" Source="{Binding Feature1Img}" VerticalOptions="Center" ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="Feature 1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Feature1txt}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="14"/>
-                            </StackLayout>
-                            <StackLayout Margin="0,10" Grid.Column="1">
-                                <forms:CachedImage HeightRequest="50" WidthRequest="50" Source="{Binding Feature2Img}" VerticalOptions="Center" ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="Feature 2" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Feature2txt}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="14"/>
-                            </StackLayout>
-                            <StackLayout Margin="0,10" Grid.Row="1" Grid.Column="0">
-                                <forms:CachedImage HeightRequest="50" WidthRequest="50" Source="{Binding Feature3Img}" VerticalOptions="Center" ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="Feature 3" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Feature3txt}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="14"/>
-                            </StackLayout>
-                            <StackLayout Margin="0,10" Grid.Row="1" Grid.Column="1">
-                                <forms:CachedImage HeightRequest="50" WidthRequest="50" Source="{Binding Feature4Img}" VerticalOptions="Center" ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="Feature 4" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                                <Label Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Feature4txt}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="14"/>
-                            </StackLayout>
-                        </Grid>
-                        <Button Margin="40,0,40,10"
-                        Style="{DynamicResource DefaultButtonStyle2}"
-                        Command="{Binding ReadMoreCommand}"
-                        Text="Read More"/>
-                    </StackLayout>
-                </Frame>
-
-                <Label TextType="Text" Margin="14" Style="{DynamicResource DefaultLabelStyle}" FontFamily="{DynamicResource RobotoBoldFont}" Text="What they say about us" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24"/>
-                <StackLayout Margin="0,8" HeightRequest="260">
-                    <CollectionView HorizontalScrollBarVisibility="Never" ItemsSource="{Binding TestimonialItem}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Horizontal" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Margin="0,15,15,10">
-                                    <Frame Padding="1" WidthRequest="310"  HeightRequest="250" VerticalOptions="Center" HorizontalOptions="Center" Style="{DynamicResource FrameStyle1}" >
-                                        <StackLayout Margin="10" Orientation="Vertical">
-                                            <StackLayout Margin="10" Spacing="10" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                <Image Source="{Binding star1}" HeightRequest="28" WidthRequest="28"  VerticalOptions="Center"/>
-                                                <Image Source="{Binding star2}" HeightRequest="28" WidthRequest="28"  VerticalOptions="Center"/>
-                                                <Image Source="{Binding star3}" HeightRequest="28" WidthRequest="28"  VerticalOptions="Center"/>
-                                                <Image Source="{Binding star4}" HeightRequest="28" WidthRequest="28"  VerticalOptions="Center"/>
-                                                <Image Source="{Binding star5}" HeightRequest="28" WidthRequest="28"  VerticalOptions="Center"/>
-                                            </StackLayout>
-                                            <Label HeightRequest="50" MaxLines="2" TextType="Html" Margin="0" Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding description}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="18"/>
-                                            <Frame IsClippedToBounds="True" Padding="0" Style="{DynamicResource FrameStyle }" HeightRequest="60" WidthRequest="60" CornerRadius="30" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Start">
-                                                <forms:CachedImage Margin="0"  Source="{Binding logo}" Aspect="AspectFill"
-                                              ErrorPlaceholder="LoadIcon"  LoadingPlaceholder="LoadIcon"/>
-                                            </Frame>
-                                            <Label Style="{DynamicResource DefaultLabelStyle2}" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Center"  HorizontalTextAlignment="Center" FontSize="16"/>
-                                            <Label Margin="0,0,0,10" Style="{DynamicResource DefaultLabelStyle2}" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding designation}" VerticalOptions="Start" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="14"/>
-                                        </StackLayout>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.AboutUsCommand, Source={x:Reference thispage}}" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </StackLayout>
-
-                <Grid HeightRequest="410" Margin="0,0,0,10">
-                    <Frame Padding="0" Margin="0,44,0,0" Style="{DynamicResource FrameStyle2}" >
-                        <StackLayout >
-                            <Label Margin="0,65,0,8"
-                            Style="{DynamicResource DefaultLabelStyle}" FontFamily="{DynamicResource RobotoBoldFont}"
-                             VerticalOptions="Center"
-                                FontSize="24" TextType="Text"
-                                HorizontalOptions="CenterAndExpand"
-                                Text="Our Clients"/>
-
-                            <CollectionView x:Name="LogoList" VerticalScrollBarVisibility="Never" ItemsSource="{Binding ClientItems}">
-                                <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Orientation="Horizontal" />
-                                </CollectionView.ItemsLayout>
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout>
-                                            <Frame HasShadow="False"
-                                                        Margin="8" Padding="5"
-                                                        CornerRadius="7"
-                                                        VerticalOptions="Center"
-                                                        HorizontalOptions="Center"
-                                                        HeightRequest="160"
-                                                        WidthRequest="160">
-                                                <forms:CachedImage
-                                                    Aspect="AspectFit"
-                                                    ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon"
-                                                    Source="{Binding logo}">
-                                                </forms:CachedImage>
-                                            </Frame>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-
-                        <Button Margin="40,10,40,20"
-                        Style="{DynamicResource DefaultButtonStyle2}"
-                        Command="{Binding ClientViewAllCommand}"
-                        Text="View All"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame Padding="10" Style="{DynamicResource FrameStyle }" HeightRequest="76" WidthRequest="76" CornerRadius="50" BackgroundColor="#FEECBF" BorderColor="#FEECBF" HorizontalOptions="Center" VerticalOptions="Start">
-                        <forms:CachedImage Margin="0,0,0,6" HeightRequest="50" WidthRequest="50" ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon" Aspect="Fill" Source="{Binding OurClientlogo}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    </Frame>
-                </Grid>
-
-                <Frame Margin="0,10" Padding="1" HasShadow="True" Style="{DynamicResource FrameStyle}" CornerRadius="10">
-                     <StackLayout Orientation="Vertical">
-                        <Label TextType="Text" Margin="10,12,10,10" Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="SportDirect in News" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24"/>
-                        <Frame Padding="0" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent" BorderColor="Transparent" IsClippedToBounds="True">
-                            <forms:CachedImage BackgroundColor="Transparent" Margin="10" HeightRequest="200" Aspect="AspectFill" Source="{Binding NewsBgImage}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon"/>
-                        </Frame>
-                        <Label Margin="10" Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoRegularFont}" MaxLines="3" Text="{Binding NewsDescription}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18"/>
-                        <Label Margin="10" Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" Text="{Binding Newsdate}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                        <Button Margin="40,10,40,25"
-                        Style="{DynamicResource DefaultButtonStyle2}"
-                        Command="{Binding ReadMoreNewsCommand}"
-                        Text="Read More"/>
-                    </StackLayout>
-                </Frame>
-
-                <Frame Margin="0,10" Padding="1" HasShadow="True" Style="{DynamicResource FrameStyle}" CornerRadius="10">
-                    <StackLayout Margin="10" Orientation="Vertical">
-                        <Label TextType="Text"  Margin="4" Style="{DynamicResource DefaultLabelStyle }" FontFamily="{DynamicResource RobotoBoldFont}" Text="Careers" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24"/>
-                        <BoxView Margin="5,10" Style="{DynamicResource BoxViewStyle }" VerticalOptions="Center" />
-                        <Frame Padding="0" VerticalOptions="Center" HeightRequest="200" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent" IsClippedToBounds="True">
-                            <forms:CachedImage Source="{Binding CareersLogo}" Aspect="Fill" ErrorPlaceholder="LoadIcon" LoadingPlaceholder="LoadIcon"/>
-                        </Frame>
-                         <Label Margin="10" Style="{DynamicResource DefaultLabelStyle2 }" FontFamily="{DynamicResource RobotoRegularFont}" MaxLines="2" Text="{Binding CareersDescription}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
-                        <Button Margin="40,10"
-                        Style="{DynamicResource DefaultButtonStyle2}"
-                        Command="{Binding ViewOpeningsCommand}"
-                        Text="View Openings"/>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-        </ScrollView>-->

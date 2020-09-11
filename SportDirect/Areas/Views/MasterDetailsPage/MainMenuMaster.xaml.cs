@@ -17,7 +17,8 @@ namespace SportDirect.Areas.Views.MasterDetailsPage
         public MainMenuMaster()
         {
             InitializeComponent();
-            BindingContext = App.Locator.MainMenuMaster; 
+            BindingContext = App.Locator.MainMenuMaster;
+            App.Locator.MainMenuMaster.InitializeData();
         }        
     }
 }

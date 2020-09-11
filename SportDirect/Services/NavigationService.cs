@@ -382,7 +382,7 @@ namespace SportDirect.Services
             _mappings.Add(new Tuple<Type, Type, bool>(typeof(FeaturedProductPageViewModel), typeof(FeaturedProductPage), false));
             _mappings.Add(new Tuple<Type, Type, bool>(typeof(NotificationPageViewModel), typeof(NotificationPage), false));
             _mappings.Add(new Tuple<Type, Type, bool>(typeof(SortPageViewModel), typeof(SortPage), true));
-
+            _mappings.Add(new Tuple<Type, Type, bool>(typeof(ForgetPasswordPageViewModel), typeof(ForgetPasswordPage), true));
             //PopupViews
             //_mappings.Add(new Tuple<Type, Type, bool>(typeof(SaleNotesContextPopupViewModel), typeof(SaleNotesContextPopup), true));
             //_mappings.Add(new Tuple<Type, Type, bool>(typeof(SelectNoteTypePopupViewModel), typeof(SelectNoteTypePopup), true));
