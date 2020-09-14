@@ -22,6 +22,7 @@ using SportDirect.Areas.Views.MasterDetailsPage.ViewModels;
 using SportDirect.Areas.Views.MasterDetailsPage;
 using SportDirect.Data.Models.Request;
 using SportDirect.Service.Interfaces;
+using Xamarin.Essentials;
 
 namespace SportDirect.Services
 {
@@ -53,7 +54,37 @@ namespace SportDirect.Services
 
         public async Task InitializeAsync()
         {
-            //await _userService.Initialization; // if we need to fetch any data before navigating to any page           
+            //await _userService.Initialization; // if we need to fetch any data before navigating to any page      
+
+            //try
+            //{
+            //    var location = await Geolocation.GetLastKnownLocationAsync();
+            //    if (location != null)
+            //    {
+
+            //        var placemarks = await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude);
+            //        var placemark = placemarks?.FirstOrDefault();
+            //        if (placemark != null)
+            //        {
+            //            App.CurrentCountryCode = placemark.CountryCode;
+            //        }
+
+            //    }
+            //}
+            //catch (FeatureNotSupportedException fnsEx)
+            //{
+            //    // Handle not supported on device exception  
+            //}
+            //catch (PermissionException pEx)
+            //{
+            //    // Handle permission exception  
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Unable to get location  
+            //}
+
+
             if (Settings.IsDarkMode == true)
             {
                 Settings.notificationOnOff = "On";

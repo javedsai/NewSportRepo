@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
 namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
@@ -61,7 +62,13 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
 
         public ICommand BarcodeScanCommand => new Command(async (obj) =>
         {
-            var Scan = new ZXingScannerPage();
+            var options = new MobileBarcodeScanningOptions
+            {
+                AutoRotate = false,
+                UseFrontCameraIfAvailable = false,
+                TryHarder = true,
+            };
+            var Scan = new ZXingScannerPage(options);
             await App.Current.MainPage.Navigation.PushModalAsync(Scan);
             Scan.OnScanResult += (Result) =>
             {

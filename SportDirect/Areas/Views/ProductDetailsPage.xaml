@@ -79,7 +79,7 @@
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate>
                                         <forms:CachedImage
-                                            Aspect="Fill"
+                                            Aspect="AspectFit"
                                             BackgroundColor="Transparent"
                                             ErrorPlaceholder="LoadIcon"
                                             HorizontalOptions="Center"
@@ -91,13 +91,13 @@
                             </CarouselView>
                             <IndicatorView
                                 Margin="20"
-                                HorizontalOptions="Start"
-                                IndicatorColor="Gray"
+                                HorizontalOptions="CenterAndExpand"
+                                IndicatorColor="#D4D4D4"
                                 IndicatorSize="8"
                                 IndicatorView.ItemsSource="{Binding CarouselList}"
                                 IndicatorsShape="Circle"
                                 Position="{Binding Source={x:Reference Crsl}, Path=Position}"
-                                SelectedIndicatorColor="WhiteSmoke"
+                                SelectedIndicatorColor="#FFFFFF"
                                 VerticalOptions="End" />
                         </Grid>
                     </StackLayout>
@@ -119,10 +119,12 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout
                                         Grid.Column="0"
+                                        Grid.ColumnSpan="2"
                                         Margin="0,0,10,0"
                                         VerticalOptions="CenterAndExpand">
                                         <Label
-                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            FontSize="22"
                                             HorizontalOptions="Start"
                                             MaxLines="3"
                                             Style="{DynamicResource DefaultLabelStyle}"
@@ -177,6 +179,7 @@
                                             <Label TextType="Text" Text="$ 250.00" Style="{DynamicResource DefaultLabelStyle2}"  VerticalOptions="Center" HorizontalOptions="End" FontSize="14" TextDecorations="Strikethrough"/>
                                         </Grid>-->
                                         <Label
+                                            FontAttributes="Bold"
                                             FontSize="18"
                                             HorizontalOptions="End"
                                             Style="{DynamicResource DefaultLabelStyle2}"
@@ -298,7 +301,7 @@
                             <StackLayout Margin="0,15,0,0">
                                 <Label
                                     Margin="0,5"
-                                    FontSize="20"
+                                    FontSize="24"
                                     HorizontalOptions="Start"
                                     MaxLines="3"
                                     Style="{DynamicResource DefaultLabelStyle}"

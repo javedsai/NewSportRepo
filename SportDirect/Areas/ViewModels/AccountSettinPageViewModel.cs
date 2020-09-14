@@ -202,7 +202,14 @@ namespace SportDirect.Areas.ViewModels
                  }
                  else if(res1?.data?.customerUpdate?.customerUserErrors.Count > 0)
                  {
-                     await ShowAlert(res1?.data?.customerUpdate?.customerUserErrors[0]?.message);
+                     if(res1?.data?.customerUpdate?.customerUserErrors[0]?.message == "Phone is invalid")
+                     {
+                         await ShowAlert("Enter phone number with STD code then try again");
+                     }
+                     else
+                     {
+                         await ShowAlert(res1?.data?.customerUpdate?.customerUserErrors[0]?.message);
+                     }
                  }
                  else
                  {
