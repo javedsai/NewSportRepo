@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -81,9 +82,9 @@ namespace SportDirect.Data.Models.Response
     public class CollectionProductListDataProducts : BindableObject
     {
         public CollectionProductListDataPageInfo pageInfo { get; set; }
-        private List<CollectionProductListDataEdge> _edges;
+        private ObservableCollection<CollectionProductListDataEdge> _edges;
 
-        public List<CollectionProductListDataEdge> edges
+        public ObservableCollection<CollectionProductListDataEdge> edges
         {
             get { return _edges; }
             set { _edges = value;OnPropertyChanged(nameof(edges)); }

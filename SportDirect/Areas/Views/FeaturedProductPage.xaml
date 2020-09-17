@@ -99,7 +99,7 @@
                         EmptyView="No Data found"
                         HorizontalScrollBarVisibility="Never"
                         ItemsSource="{Binding ProductList.edges, Mode=TwoWay}"
-                        RemainingItemsThreshold="2"
+                        RemainingItemsThreshold="4"
                         RemainingItemsThresholdReachedCommand="{Binding ThresoldCommand}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout

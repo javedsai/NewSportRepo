@@ -631,6 +631,23 @@
                             <TapGestureRecognizer Command="{Binding AboutUsCommand}" />
                         </Grid.GestureRecognizers>
                     </Grid>
+                    <Grid Margin="10,8,20,10" ColumnDefinitions="7*,3*">
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            Style="{DynamicResource DefaultLabelStyle}"
+                            Text="Become a provider"
+                            VerticalOptions="Center" />
+                        <Image
+                            Grid.Column="1"
+                            HeightRequest="12"
+                            HorizontalOptions="EndAndExpand"
+                            Source="backarrow.png"
+                            VerticalOptions="Center"
+                            WidthRequest="12" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BecomeAProviderCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
                     <Grid Margin="10,8,20,8">
                         <Label
                             HorizontalOptions="Start"

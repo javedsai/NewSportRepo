@@ -178,11 +178,11 @@ namespace SportDirect.Service.Services
                 Query = query,
                 Variables = requestModel
             };
-            httpClient.DefaultRequestHeaders.Add("X-Shopify-Storefront-Access-Token", "fec912ae8f1051ce097be6130450d901");
+            httpClient.DefaultRequestHeaders.Add("X-Shopify-Storefront-Access-Token", "77cdd9ac81d2e9f81330037e42a040d5");
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             var reqJson = JsonConvert.SerializeObject(request);
             var httpcontent = new StringContent(reqJson, Encoding.UTF8, "application/json");
-            var graphQLResponse = await httpClient.PostAsync("https://sportdirect-ca-dev.myshopify.com/api/2019-07/graphql.json", httpcontent);
+            var graphQLResponse = await httpClient.PostAsync("https://sportdirect.myshopify.com/api/2019-07/graphql.json", httpcontent);
             var json = await graphQLResponse.Content.ReadAsStringAsync();
             var graphResult = JsonConvert.DeserializeObject<TResponse>(json);
             return graphResult;
@@ -198,11 +198,11 @@ namespace SportDirect.Service.Services
             {
                 Query = query
             };
-            httpClient.DefaultRequestHeaders.Add("X-Shopify-Storefront-Access-Token", "fec912ae8f1051ce097be6130450d901");
+            httpClient.DefaultRequestHeaders.Add("X-Shopify-Storefront-Access-Token", "77cdd9ac81d2e9f81330037e42a040d5");
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             var reqJson = JsonConvert.SerializeObject(request);
             var httpcontent = new StringContent(reqJson, Encoding.UTF8, "application/json");
-            var graphQLResponse = await httpClient.PostAsync("https://sportdirect-ca-dev.myshopify.com/api/2019-07/graphql.json", httpcontent);
+            var graphQLResponse = await httpClient.PostAsync("https://sportdirect.myshopify.com/api/2019-07/graphql.json", httpcontent);
             var json = await graphQLResponse.Content.ReadAsStringAsync();
             var graphResult = JsonConvert.DeserializeObject<TResponse>(json);
             return graphResult;

@@ -8,7 +8,9 @@ using SportDirect.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,7 +18,7 @@ using Xamarin.Forms;
 
 namespace SportDirect.Areas.ViewModels
 {
-    public class FeaturedProductPageViewModel : BasePageViewModel
+    public class FeaturedProductPageViewModel : BasePageViewModel, INotifyPropertyChanged
     {
         public string _handler;
         private bool _isSortWay;
@@ -29,6 +31,12 @@ namespace SportDirect.Areas.ViewModels
         {
             get { return _isSortVisible; }
             set { _isSortVisible = value;RaisePropertyChanged(nameof(IsSortVisible)); }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public bool GridIsvisible
@@ -54,7 +62,7 @@ namespace SportDirect.Areas.ViewModels
         public CollectionProductListDataProducts ProductList
         {
             get { return _productList; }
-            set { _productList = value; RaisePropertyChanged(); }
+            set { _productList = value; NotifyPropertyChanged(nameof(ProductList)); }
         }
         public ICommand SortCommand => new Command(async(obj) =>
         {
@@ -197,6 +205,7 @@ namespace SportDirect.Areas.ViewModels
                         }
                         //result.edges.AddRange(res.data.shop.products.edges);
                         RaisePropertyChanged(nameof(ProductList.edges));
+                        RaisePropertyChanged(nameof(ProductList));
                     }
                     else
                     {

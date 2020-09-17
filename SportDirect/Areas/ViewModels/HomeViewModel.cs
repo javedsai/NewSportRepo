@@ -11,6 +11,7 @@ using SportDirect.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -138,11 +139,11 @@ namespace SportDirect.Areas.ViewModels
            
                 try
                 {
-                    var result = await GetProductByHandler("featured-products");
+                    var result = await GetProductByHandler("jeux-de-mousse");
                     List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
                     foreach (var item in result)
                     {
-                        List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
+                        ObservableCollection<CollectionProductListDataEdge> req = new ObservableCollection<CollectionProductListDataEdge>();
                         foreach (var val in item.edges)
                         {
                             CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
@@ -179,11 +180,11 @@ namespace SportDirect.Areas.ViewModels
           
                 try
                 {
-                    var result = await GetProductByHandler("new-arrivals");
+                    var result = await GetProductByHandler("nouveaux-produits-recemment-ajoutes");
                     List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
                     foreach (var item in result)
                     {
-                        List<CollectionProductListDataEdge> req = new List<CollectionProductListDataEdge>();
+                    ObservableCollection<CollectionProductListDataEdge> req = new ObservableCollection<CollectionProductListDataEdge>();
                         foreach (var val in item.edges)
                         {
                             CollectionProductListDataEdge d1 = new CollectionProductListDataEdge
@@ -275,7 +276,17 @@ namespace SportDirect.Areas.ViewModels
                 {
 
                     UserDialogs.Instance.ShowLoading();
-                    await App.Locator.FeaturedProductPage.InitilizeData("featured-products");
+                    string NewArrivalHandler = string.Empty;
+                    var cultureName = CultureInfo.CurrentCulture.Name;
+                    if (cultureName == "en-US")
+                    {
+                        NewArrivalHandler = "jeux-de-mousse";
+                    }
+                    else
+                    {
+                        NewArrivalHandler = "jeux-de-mousse";
+                    }
+                    await App.Locator.FeaturedProductPage.InitilizeData(NewArrivalHandler);
                     await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
                     UserDialogs.Instance.HideLoading();
                 });
@@ -288,7 +299,17 @@ namespace SportDirect.Areas.ViewModels
                 return new Command(async () =>
                 {
                     UserDialogs.Instance.ShowLoading();
-                    await App.Locator.FeaturedProductPage.InitilizeData("new-arrivals");
+                    string NewArrivalHandler = string.Empty;
+                    var cultureName = CultureInfo.CurrentCulture.Name;
+                    if(cultureName == "en-US")
+                    {
+                        NewArrivalHandler = "nouveaux-produits-recemment-ajoutes";
+                    }
+                    else
+                    {
+                        NewArrivalHandler = "nouveaux-produits-recemment-ajoutes";
+                    }
+                    await App.Locator.FeaturedProductPage.InitilizeData(NewArrivalHandler);
                     await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
                     UserDialogs.Instance.HideLoading();
                 });

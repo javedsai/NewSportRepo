@@ -249,11 +249,13 @@ namespace SportDirect.Areas.ViewModels
                                 SelectedNode = varient.node;
                                 item.IsSelected = true;
                                 item.BorderCol = "Black";
+                                i = true;
                             }
                             else
                             {
                                 item.IsSelected = false;
                                 item.BorderCol = "White";
+                                i = false;
                             }
                             if (ListOfAttributes.Any(s => s.AttributeName == option.name))
                             {

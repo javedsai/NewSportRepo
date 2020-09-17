@@ -74,6 +74,7 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
+                    await ShowAlert(Result.Text, "Barcode", "Ok");
                     //await App.Current.MainPage.Navigation.PushModalAsync();
                     //mycode.Text = Result.Text;
                 });
@@ -83,21 +84,38 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new PromotionPage());
         });
+        public ICommand BecomeAProviderCommand => new Command(async (obj) =>
+        {
+            await ShowLoading();
+            await App.Current.MainPage.Navigation.PushAsync(new WebBrowserPage("https://sportdirect.atlassian.net/servicedesk/customer/portal/1/group/1/create/10107"), true);
+            await Task.Delay(3000);
+            await HideLoading();
+        });
         public ICommand ReferFriendCommand => new Command(async (obj) =>
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new ReferAFriend());
         });
         public ICommand SimpleCommand => new Command(async (obj) =>
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new GetQuotePage());
+            await ShowLoading();
+            await App.Current.MainPage.Navigation.PushAsync(new WebBrowserPage("https://sportdirect.atlassian.net/servicedesk/customer/portal/1/group/1/create/10105"), true);
+            await Task.Delay(3000);
+            await HideLoading();
         });
         public ICommand ComplexCommand => new Command(async (obj) =>
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new ComplexPage());
+            await ShowLoading();
+            await App.Current.MainPage.Navigation.PushAsync(new WebBrowserPage("https://sportdirect.atlassian.net/servicedesk/customer/portal/1/group/1/create/10105"), true);
+            await Task.Delay(3000);
+            await HideLoading();
         });
         public ICommand OrderTrackingCommand => new Command(async (obj) =>
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new OrderTracking());
+            await ShowLoading();
+            await App.Current.MainPage.Navigation.PushAsync(new WebBrowserPage("https://sportdirect.atlassian.net/servicedesk/customer/portal/1/group/1/create/10102"), true);
+            await Task.Delay(3000);
+            await HideLoading();
+            //await App.Current.MainPage.Navigation.PushModalAsync(new OrderTracking());
         });
         public ICommand FAQCommand => new Command(async (obj) =>
         {
@@ -105,7 +123,11 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
         });
         public ICommand Contactusommand => new Command(async (obj) =>
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new Contactus());
+            await ShowLoading();
+            await App.Current.MainPage.Navigation.PushAsync(new WebBrowserPage("https://sportdirect.atlassian.net/servicedesk/customer/portal/1/group/1/create/10106"), true);
+            await Task.Delay(3000);
+            await HideLoading();
+            //await App.Current.MainPage.Navigation.PushModalAsync(new Contactus());
         });
         public ICommand BookInstallationCommand => new Command(async (obj) =>
         {
