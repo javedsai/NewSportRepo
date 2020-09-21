@@ -91,11 +91,11 @@ namespace SportDirect.Areas.ViewModels
         //Api For H
         public async Task GetCollectionList()
         {
-            UserDialogs.Instance.ShowLoading();
           
                 try
                 {
                     string queryid_id = "{shop {name collections(first: 50) {edges {node { id handle image {id originalSrc} title }}}}}";
+                await Task.Delay(2000);
                     var res = await _apiService.GetCollection(queryid_id);
                     if (res != null)
                     {
@@ -113,15 +113,13 @@ namespace SportDirect.Areas.ViewModels
                     }
                     else
                     {
-                        UserDialogs.Instance.Toast("No colletion data found");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     UserDialogs.Instance.Alert("Internal Server Error");
                 }
            
-            UserDialogs.Instance.HideLoading();
         }
 
         public ICommand SearchCommand => new Command(async (obj) =>
@@ -135,7 +133,6 @@ namespace SportDirect.Areas.ViewModels
 
         public async Task GetFeaturedProductList()
         {
-            UserDialogs.Instance.ShowLoading();
            
                 try
                 {
@@ -165,18 +162,15 @@ namespace SportDirect.Areas.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Alert(ex.Message.ToString());
                }
             
            
            
-            UserDialogs.Instance.HideLoading();
 
         }
         public async Task GetNewProductList()
         {
-            UserDialogs.Instance.ShowLoading();
           
                 try
                 {
@@ -212,7 +206,6 @@ namespace SportDirect.Areas.ViewModels
             
            
            
-            UserDialogs.Instance.HideLoading();
 
         }
         public async Task<ObservableCollection<NewArrivalModel>> GetNewArrivalList(string product_type)
@@ -342,7 +335,8 @@ namespace SportDirect.Areas.ViewModels
                 try
                 {
                     string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:5 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
-                    var res = await _apiService.GetCollectionListData(queryid_id);
+                await Task.Delay(2000);
+                var res = await _apiService.GetCollectionListData(queryid_id);
                     if (res?.data?.shop?.collectionByHandle != null)
                     {
                         response.Add(res?.data?.shop?.collectionByHandle?.products);

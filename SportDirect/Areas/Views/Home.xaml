@@ -121,7 +121,7 @@
                                 CornerRadius="20"
                                 FontFamily="{StaticResource QuicksandMediumFont}"
                                 FontSize="14"
-                                HorizontalTextAlignment="Center"
+                                HorizontalTextAlignment="Start"
                                 Placeholder="Search Product"
                                 PlaceholderColor="Gray"
                                 SearchCommand="{Binding SearchCommand}"

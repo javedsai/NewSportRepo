@@ -43,7 +43,6 @@ namespace SportDirect.Areas.ViewModels
         public ProfilePageViewModel(IApiService apiService)
         {
             _apiService = apiService;
-            FillDetails();
             //ProfilePic = "Profilepic";
             //ProfileName = "Jenny Smith";
             //ProfileEmail = "jennysmith@xyz.com";
@@ -52,7 +51,6 @@ namespace SportDirect.Areas.ViewModels
 
         public async void FillDetails()
         {
-            UserDialogs.Instance.ShowLoading();
 
             try
             {
@@ -87,7 +85,6 @@ namespace SportDirect.Areas.ViewModels
             }
 
 
-            UserDialogs.Instance.HideLoading();
 
         }
         public Command AccountSettingCommand

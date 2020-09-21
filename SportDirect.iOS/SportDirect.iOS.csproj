@@ -71,7 +71,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <WarningsNotAsErrors>
     </WarningsNotAsErrors>

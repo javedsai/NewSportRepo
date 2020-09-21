@@ -36,6 +36,7 @@ namespace SportDirect.iOS
             global::Xamarin.Forms.Forms.Init();
             CarouselViewRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             ImageCircleRenderer.Init();
             XF.Material.iOS.Material.Init();
             LoadApplication(new App());

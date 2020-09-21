@@ -111,7 +111,9 @@ namespace SportDirect.Areas.ViewModels
             string modifiedCollectionName = quote + type + quote;
             try
             {
-                string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:20 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                ProductList = new CollectionProductListDataProducts();
+                string queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title handle products(first:10 ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                await Task.Delay(4000);
                 var res = await _apiService.GetCollectionListData(queryid_id);
                 if (res?.data?.shop?.collectionByHandle != null)
                 {
@@ -146,16 +148,17 @@ namespace SportDirect.Areas.ViewModels
         {
             _isSearchtWay = true;
             _searchText = SearchText;
-            UserDialogs.Instance.ShowLoading();
             try
             {
+                ProductList = new CollectionProductListDataProducts();
                 char t = '"';
                 var type = t + SearchText + t;
                 string queryid_id = "{ shop{ products(first: 20, query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
+                await Task.Delay(2000);
                 var res = await _apiService.SortListOfProduct(queryid_id);
-                 if (res.data.shop.products.edges.Count > 0)
+                 if (res?.data?.shop?.products?.edges?.Count > 0)
                 {
-                    ProductList = new CollectionProductListDataProducts();
+                    
                     ProductList.edges = (res?.data?.shop?.products?.edges);
                     ProductList.pageInfo = (res?.data?.shop?.products.pageInfo);
                 }
@@ -168,30 +171,27 @@ namespace SportDirect.Areas.ViewModels
             catch (Exception ex)
             {
                 UserDialogs.Instance.Alert("Internal server error");
+                UserDialogs.Instance.HideLoading();
             }
-            UserDialogs.Instance.HideLoading();
         }
         public ICommand ThresoldCommand => new Command(async (obj) =>
         {
-            UserDialogs.Instance.ShowLoading();
             if (ProductList.pageInfo.hasNextPage)
                 GetCollection(ProductList.edges.LastOrDefault().cursor);
             else
                 UserDialogs.Instance.Toast("No More Data Available");
-            UserDialogs.Instance.HideLoading();
         });
 
         private async void GetCollection(string afterData)
         {
             if(_isSearchtWay)
             {
-                UserDialogs.Instance.ShowLoading();
                 try
                 {
                     char t = '"';
                     var type = t + _searchText + t;
                     string modifiedAfterCursor1 = t + afterData + t;
-                    string queryid_id = "{ shop{ products(first: 20 after:" + modifiedAfterCursor1 + ", query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
+                    string queryid_id = "{ shop{ products(first: 10 after:" + modifiedAfterCursor1 + ", query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
                     var res = await _apiService.SortListOfProduct(queryid_id);
                     if (res.data.shop.products.edges.Count > 0)
                     {
@@ -217,7 +217,6 @@ namespace SportDirect.Areas.ViewModels
                 {
                     //UserDialogs.Instance.Alert("Internal server error");
                 }
-                UserDialogs.Instance.HideLoading();
             }
             else
             {
@@ -228,28 +227,28 @@ namespace SportDirect.Areas.ViewModels
                 {
                     string queryid_id;
                     if (string.IsNullOrEmpty(_Condition) && string.IsNullOrEmpty(_Name))
-                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:20 after:" + modifiedAfterCursor + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:10 after:" + modifiedAfterCursor + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                     else
-                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:20 after:" + modifiedAfterCursor + "," + "sortKey:" + _Name + "," + "reverse: " + _Condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
+                        queryid_id = "{shop {name collectionByHandle(handle:" + modifiedCollectionName + ") {title products(first:10 after:" + modifiedAfterCursor + "," + "sortKey:" + _Name + "," + "reverse: " + _Condition + " ) {pageInfo { hasNextPage hasPreviousPage }edges { cursor node {id images(first:5){edges{node{id originalSrc}}} productType description variants(first: 50){edges{node{id available title selectedOptions{name value} price image{id originalSrc}}}} title}}}}}}";
                     var res = await _apiService.GetCollectionListData(queryid_id);
-                    if (res.data.shop.collectionByHandle != null)
+                    if (res?.data?.shop?.collectionByHandle != null)
                     {
-                        foreach (var item in res.data.shop.collectionByHandle.products.edges)
+                        foreach (var item in res?.data?.shop?.collectionByHandle?.products.edges)
                         {
                             if (!ProductList.edges.Any(s => s.node.id == item.node.id))
                             {
-                                ProductList.edges.Add(item);
+                                ProductList?.edges.Add(item);
                             }
                         }
                     }
                     else
                     {
-                        UserDialogs.Instance.HideLoading();
+                        //UserDialogs.Instance.HideLoading();
                     }
                 }
                 catch (Exception ex)
                 {
-                    UserDialogs.Instance.HideLoading();
+                    //UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Alert(ex.Message.ToString());
                 }
             }

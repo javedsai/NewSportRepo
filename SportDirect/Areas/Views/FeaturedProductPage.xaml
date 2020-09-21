@@ -93,14 +93,11 @@
             </Grid>
 
             <Grid Grid.Row="2" Margin="8,0">
-                <Grid>
                     <CollectionView
-                        Margin="0,12"
-                        EmptyView="No Data found"
+                        Margin="0,12" Scrolled="CollectionView_Scrolled"
+                        EmptyView="No Data found" x:Name="fet"
                         HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding ProductList.edges, Mode=TwoWay}"
-                        RemainingItemsThreshold="4"
-                        RemainingItemsThresholdReachedCommand="{Binding ThresoldCommand}">
+                        ItemsSource="{Binding ProductList.edges, Mode=TwoWay}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
                                 HorizontalItemSpacing="10"
@@ -145,7 +142,6 @@
                 </Grid>
 
 
-            </Grid>
 
 
         </Grid>

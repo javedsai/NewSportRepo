@@ -69,7 +69,11 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
                 TryHarder = true,
             };
             var Scan = new ZXingScannerPage(options);
-            await App.Current.MainPage.Navigation.PushModalAsync(Scan);
+            Scan.Title = "Scan QR code";
+            //MaterialNavigationPage.SetAppBarColor(Scan, Color.FromHex("#006890"));
+            //MaterialNavigationPage.SetStatusBarColor(Scan, Color.FromHex("#005A7A"));
+            if (NavigationHelper.CheckType(typeof(ZXingScannerPage)))
+                await App.Current.MainPage.Navigation.PushAsync(Scan);
             Scan.OnScanResult += (Result) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -321,7 +325,6 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
         //Api To Get UserInformation
         public async Task InitializeData()
         {
-            UserDialogs.Instance.ShowLoading();
          
                 try
                 {
@@ -355,7 +358,6 @@ namespace SportDirect.Areas.Views.MasterDetailsPage.ViewModels
                 }
             
           
-            UserDialogs.Instance.HideLoading();
         }
     }
 }

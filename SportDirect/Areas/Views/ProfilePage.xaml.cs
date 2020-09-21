@@ -16,6 +16,7 @@ namespace SportDirect.Areas.Views
         {
             InitializeComponent();
             BindingContext = App.Locator.ProfilePage;
+            App.Locator.ProfilePage.FillDetails();
         }
     }
 }

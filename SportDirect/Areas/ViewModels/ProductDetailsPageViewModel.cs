@@ -239,23 +239,20 @@ namespace SportDirect.Areas.ViewModels
                 {
                     foreach (var varient in _collectionListEdge.node.variants.edges)
                     {
-                        bool i = false;
                         foreach (var option in varient.node.selectedOptions)
                         {
+                            bool i = false;
                             var item = new Data.Models.Common.Data();
                             if (!i)
                             {
-                                SelectedNode = new CollectionProductListDataNode2();
-                                SelectedNode = varient.node;
+                               
                                 item.IsSelected = true;
                                 item.BorderCol = "Black";
-                                i = true;
                             }
                             else
                             {
                                 item.IsSelected = false;
                                 item.BorderCol = "White";
-                                i = false;
                             }
                             if (ListOfAttributes.Any(s => s.AttributeName == option.name))
                             {
@@ -285,6 +282,8 @@ namespace SportDirect.Areas.ViewModels
                         {
                             if (ListOfAttributes[i].datas != null)
                             {
+                                SelectedNode = new CollectionProductListDataNode2();
+                                SelectedNode = _collectionListEdge.node.variants.edges[0].node;
                                 ListOfAttributes[i].datas[0].IsSelected = true;
                                 ListOfAttributes[i].datas[0].BorderCol = "Black";
                             }

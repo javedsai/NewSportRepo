@@ -111,45 +111,14 @@ namespace SportDirect.Services
             }
             if (Settings.IsWalkthroughCompleted == true)
             {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
-                {
-                    if (!string.IsNullOrEmpty(Settings.Customer_Access_Token))
+                 if (!string.IsNullOrEmpty(Settings.Customer_Access_Token))
                     {
                         App.Current.MainPage = new NavigationPage(new MainMenu());
-
-
-
-
-                        //                        CustomerAccRequest customerAccRequest = new CustomerAccRequest();
-                        //                        customerAccRequest.customerAccessToken = Convert.ToString(Settings.Customer_Access_Token);
-                        //                        string queryid_id = @"mutation customerAccessTokenRenew($customerAccessToken: String!) {
-                        //  customerAccessTokenRenew(customerAccessToken: $customerAccessToken) {
-                        //    customerAccessToken {
-                        //      accessToken
-                        //      expiresAt
-                        //    }
-                        //    userErrors {
-                        //      field
-                        //      message
-                        //    }
-                        //  }
-                        //}";
-
-                        //                        var res = await _apiService.RenewCustomerToken(queryid_id, customerAccRequest);
-                        //                        if (!string.IsNullOrEmpty(res.data.customerAccessTokenRenew.customerAccessToken.accessToken))
-                        //                        {
-                        //                            App.Current.MainPage = new NavigationPage(new MainMenu());
-                        //                        }
-                        //                        else
-                        //                        {
-                        //                            App.Current.MainPage = new NavigationPage(new LoginPage());
-                        //                        }
                     }
                     else
                     {
                         App.Current.MainPage = new NavigationPage(new LoginPage());
                     }
-                });
             }
             else
             {
