@@ -28,10 +28,20 @@ namespace SportDirect.Areas.Views
         //    App.Locator.Home.LoadDeshboardList();
         //    base.OnAppearing();
         //}
-
+        protected override void OnAppearing()
+        {
+            search.Text = string.Empty;
+            base.OnAppearing();
+        }
         protected override bool OnBackButtonPressed()
         {
             return false;
+        }
+        protected override void OnDisappearing()
+        {
+            //col1.Dispose();
+            //col2.Dispose();
+            base.OnDisappearing();
         }
     }
 }

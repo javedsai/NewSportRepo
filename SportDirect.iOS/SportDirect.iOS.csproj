@@ -27,7 +27,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -101,6 +101,7 @@
     <BundleResource Include="Resources\Quicksand-Light.ttf" />
     <BundleResource Include="Resources\Quicksand-Medium.ttf" />
     <BundleResource Include="Resources\Quicksand-Regular.ttf" />
+    <Compile Include="Renderers\NoBounceRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

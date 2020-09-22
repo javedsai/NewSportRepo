@@ -12,7 +12,7 @@
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:controls="clr-namespace:SportDirect.Controls"
              x:Class="SportDirect.Areas.Views.CustomersPage">
     <ContentPage.Content>
-        <Grid RowDefinitions="60,*">
+        <StackLayout>
             <StackLayout Margin="0,0,0,0"                
                 HeightRequest="60"
                 Orientation="Vertical">
@@ -23,31 +23,21 @@
                 <BoxView Style="{StaticResource BoxViewStyle}"/>
             </StackLayout>
 
-            <CollectionView Margin="10,0" Grid.Row="1" ItemsSource="{Binding CustomerList}">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
+            <ListView Margin="10,0" Grid.Row="1" SeparatorVisibility="None" RowHeight="120" ItemsSource="{Binding CustomerList}" VerticalOptions="Start">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                                     <Grid >
-                                        <Image Source="{Binding Image}" Aspect="AspectFill"/>
-                                        <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}" FontSize="18" TextColor="#FFFFFF" />
-                                    </Grid>
-                            <!--<StackLayout Margin="0,10">
-                                <Frame BorderColor="Red" HeightRequest="140" Style="{DynamicResource FrameStyle}">
-                                    <Grid>
-                                        <Image Source="{Binding Image}" Aspect="AspectFill"/>
-                                        <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{StaticResource DefaultLabelStyle}" FontSize="18" TextColor="#FFFFFF" />
-                                    </Grid>
-                                    <Frame.GestureRecognizers>
+                            <ViewCell>
+                                 <Grid Margin="0,10,0,10">
+                                        <Image Source="{Binding image}" Aspect="AspectFill"/>
+                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer  CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.CustomersListCommand, Source={x:Reference thispage}}"/>                                        
-                                    </Frame.GestureRecognizers>
-                                </Frame>
-                            </StackLayout>-->
+                                    </Grid.GestureRecognizers>
+                                    </Grid>
+                            </ViewCell>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
+                    </ListView.ItemTemplate>
                     
-                </CollectionView>
-        </Grid>
+                </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

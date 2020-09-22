@@ -126,17 +126,25 @@ namespace SportDirect.Areas.ViewModels
         {
             UserDialogs.Instance.ShowLoading();
             await App.Locator.FeaturedProductPage.InitilizeDataForSearch(SearchText);
-            await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
+            await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage(true));
             UserDialogs.Instance.HideLoading();
 
-        });
+        }); 
+            public ICommand SeeAllCategoryCommand => new Command(async (obj) =>
+            {
+                UserDialogs.Instance.ShowLoading();
+                await App.Locator.CustomersPage.InitilizeData(CategoriesImagesList);
+                await App.Current.MainPage.Navigation.PushModalAsync(new CustomersPage(_apiService));
+                UserDialogs.Instance.HideLoading();
+
+            });
 
         public async Task GetFeaturedProductList()
         {
            
                 try
                 {
-                    var result = await GetProductByHandler("jeux-de-mousse");
+                    var result = await GetProductByHandler("produits-pour-la-rentree-des-classes");
                     List<CollectionProductListDataProducts> data = new List<CollectionProductListDataProducts>();
                     foreach (var item in result)
                     {
@@ -219,7 +227,7 @@ namespace SportDirect.Areas.ViewModels
             var categoryData = obj as CategoryCommonModel;
             UserDialogs.Instance.ShowLoading();
             await App.Locator.FeaturedProductPage.InitilizeData(categoryData.handle);
-            await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
+            await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage(false));
             UserDialogs.Instance.HideLoading();
         });
         public ICommand BellNotificationCommand => new Command(async (obj) =>
@@ -237,7 +245,7 @@ namespace SportDirect.Areas.ViewModels
             {
                 return new Command(async () =>
                 {
-                    await App.Current.MainPage.Navigation.PushModalAsync(new CustomersPage());
+                    //await App.Current.MainPage.Navigation.PushModalAsync(new CustomersPage());
                 });
             }
         }
@@ -273,14 +281,14 @@ namespace SportDirect.Areas.ViewModels
                     var cultureName = CultureInfo.CurrentCulture.Name;
                     if (cultureName == "en-US")
                     {
-                        NewArrivalHandler = "jeux-de-mousse";
+                        NewArrivalHandler = "produits-pour-la-rentree-des-classes";
                     }
                     else
                     {
-                        NewArrivalHandler = "jeux-de-mousse";
+                        NewArrivalHandler = "produits-pour-la-rentree-des-classes";
                     }
                     await App.Locator.FeaturedProductPage.InitilizeData(NewArrivalHandler);
-                    await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
+                    await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage(false));
                     UserDialogs.Instance.HideLoading();
                 });
             }
@@ -303,7 +311,7 @@ namespace SportDirect.Areas.ViewModels
                         NewArrivalHandler = "nouveaux-produits-recemment-ajoutes";
                     }
                     await App.Locator.FeaturedProductPage.InitilizeData(NewArrivalHandler);
-                    await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage());
+                    await App.Current.MainPage.Navigation.PushModalAsync(new FeaturedProductPage(false));
                     UserDialogs.Instance.HideLoading();
                 });
             }
@@ -321,6 +329,7 @@ namespace SportDirect.Areas.ViewModels
         public ICommand NewArrivalDetailsCommand => new Command(async (obj) =>
         {
             UserDialogs.Instance.ShowLoading();
+
             var CatagoriesByListData = obj as CollectionProductListDataEdge;
             await App.Locator.ProductDetailsPage.InitializeData(CatagoriesByListData);
             await App.Current.MainPage.Navigation.PushModalAsync(new ProductDetailsPage());

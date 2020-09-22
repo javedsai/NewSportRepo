@@ -9,6 +9,7 @@
     xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:translate="clr-namespace:SportDirect.Resources"
+    xmlns:collec="clr-namespace:SportDirect.iOS.Renderers.NoBounceRenderer"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="thispage"
     ios:Page.UseSafeArea="true"
@@ -43,15 +44,15 @@
 
             <Grid
                 Grid.Row="1"
-                Margin="8,10,8,0"
+                Margin="8,10,8,0" x:Name="sorting" 
                 ColumnDefinitions="6*,4*"
-                IsVisible="{Binding IsSortVisible}">
+                >
                 <Frame
                     Grid.Column="1"
                     Margin="0,2,0,0"
                     BackgroundColor="#F8F8F6"
                     BorderColor="#f2f2f2"
-                    HeightRequest="50"
+                    HeightRequest="50" 
                     HorizontalOptions="FillAndExpand"
                     Style="{StaticResource FrameStyle1}"
                     VerticalOptions="Center">
@@ -65,7 +66,7 @@
                                 <TapGestureRecognizer Command="{Binding SelectCategoryCommand}"/>
                             </Grid.GestureRecognizers>
                         </Grid>-->
-                        <Image
+                        <ImageButton
                             Margin="8,0,0,0"
                             HeightRequest="18"
                             HorizontalOptions="Start"
@@ -92,9 +93,10 @@
                 </Frame>
             </Grid>
 
-            <Grid Grid.Row="2" Margin="8,0">
-                    <CollectionView
+            <Grid Grid.Row="2" RowDefinitions="97*,3*" Margin="8,0">
+                     <CollectionView
                         Margin="0,12" Scrolled="CollectionView_Scrolled"
+                        
                         EmptyView="No Data found" x:Name="fet"
                         HorizontalScrollBarVisibility="Never"
                         ItemsSource="{Binding ProductList.edges, Mode=TwoWay}">
@@ -109,7 +111,9 @@
                             <DataTemplate>
                                 <StackLayout>
                                     <Frame Padding="0" CornerRadius="10">
-                                        <Image
+                                        <forms:CachedImage
+                                             ErrorPlaceholder="LoadIcon.png"
+                            LoadingPlaceholder="LoadIcon.png"
                                             Aspect="Fill"
                                             HeightRequest="175"
                                             Source="{Binding node.variants.edges[0].node.image.originalSrc}" />
@@ -139,6 +143,12 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+                    <Label Grid.Row="1" Text="Go to Home Page" x:Name="lastItem" Padding="0">
+                        <Label.GestureRecognizers>
+                            <!--<TapGestureRecognizer Command="{Binding GoBackHomeCommand}"/>-->
+                        </Label.GestureRecognizers>
+                    </Label>
+                   
                 </Grid>
 
 

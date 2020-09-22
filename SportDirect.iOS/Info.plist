@@ -57,6 +57,6 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please Allow Camera to Scan Barcode</string>
 	<key>CFBundleVersion</key>
-	<string>41</string>
+	<string>42</string>
 </dict>
 </plist>

@@ -116,7 +116,7 @@
                         </StackLayout>
 
                         <StackLayout Margin="0,10">
-                            <Controls:AppSearchBar
+                            <Controls:AppSearchBar x:Name="search"
                                 BackgroundColor="White"
                                 CornerRadius="20"
                                 FontFamily="{StaticResource QuicksandMediumFont}"
@@ -132,15 +132,30 @@
                             Margin="0,5"
                             HeightRequest="180"
                             VerticalOptions="Center">
-                            <Label
+                            <StackLayout Orientation="Horizontal">
+                                <Label
                                 FontSize="18"
                                 HorizontalOptions="Start"
                                 Style="{DynamicResource DefaultLabelStyle}"
                                 Text="Categories"
                                 TextType="Text"
                                 VerticalOptions="Center" />
+                            <Label HorizontalOptions="EndAndExpand"
+                                    Grid.Column="1"
+                                    FontSize="16"
+                                    Style="{DynamicResource DefaultLabelStyle2}"
+                                    Text="see all"
+                                    TextDecorations="Underline"
+                                    TextType="Text"
+                                    VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SeeAllCategoryCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            
                             <StackLayout Margin="0,8" Orientation="Horizontal">
-                                <CollectionView HorizontalScrollBarVisibility="Never" ItemsSource="{Binding CategoriesImagesList}">
+                                <CollectionView x:Name="col1" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding CategoriesImagesList}">
                                     <CollectionView.ItemsLayout>
                                         <GridItemsLayout Orientation="Horizontal" />
                                     </CollectionView.ItemsLayout>
@@ -168,7 +183,7 @@
                                                     FontSize="14"
                                                     HorizontalOptions="Center"
                                                     HorizontalTextAlignment="Center"
-                                                    Style="{DynamicResource DefaultLabelStyle}"
+                                                    Style="{DynamicResource DefaultLabelStyle}" 
                                                     Text="{Binding title}"
                                                     TextType="Text"
                                                     VerticalOptions="Center" />
@@ -191,7 +206,7 @@
                                     FontSize="18"
                                     HorizontalOptions="Start"
                                     Style="{DynamicResource DefaultLabelStyle}"
-                                    Text="Featured products"
+                                    Text="Best Sellers"
                                     TextType="Text"
                                     VerticalOptions="Center" />
                                 <Label
@@ -213,7 +228,7 @@
                                 Margin="0,8"
                                 HeightRequest="264"
                                 VerticalOptions="Center">
-                                <CollectionView
+                                <CollectionView x:Name="col2"
                                     EmptyView="No data found"
                                     HorizontalScrollBarVisibility="Never"
                                     ItemsSource="{Binding FeaturedProduct[0].edges}">

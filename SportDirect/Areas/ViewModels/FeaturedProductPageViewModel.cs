@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using SportDirect.Areas.Views.MasterDetailsPage;
 
 namespace SportDirect.Areas.ViewModels
 {
@@ -25,12 +26,12 @@ namespace SportDirect.Areas.ViewModels
         private string _Condition = string.Empty;
         private string _Name = string.Empty;
         private bool _gridIsvisible = false;
-        private bool _isSortVisible;
+        private bool _istVisible;
         private bool _isSearchtWay;
-        public bool IsSortVisible
+        public bool IstVisible
         {
-            get { return _isSortVisible; }
-            set { _isSortVisible = value;RaisePropertyChanged(nameof(IsSortVisible)); }
+            get { return _istVisible; }
+            set { _istVisible = value;NotifyPropertyChanged(nameof(IstVisible)); }
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -51,7 +52,14 @@ namespace SportDirect.Areas.ViewModels
             get { return _title; }
             set { _title = value; RaisePropertyChanged(nameof(Title)); }
         }
+        private bool _showText;
 
+        public bool ShowText
+        {
+            get { return _showText; }
+            set { _showText = value; RaisePropertyChanged(nameof(ShowText)); }
+        }
+        
         //private ObservableCollection<CollectionProductListDataProducts> _productList;
         //public ObservableCollection<CollectionProductListDataProducts> ProductList
         //{
@@ -137,6 +145,7 @@ namespace SportDirect.Areas.ViewModels
             _searchText = string.Empty;
             _isSearchtWay = false;
             _Condition = condition;
+            IstVisible = true;
             _Name = name;
             ProductList = new CollectionProductListDataProducts();
             ProductList.edges = (dataProducts.edges);
@@ -148,6 +157,8 @@ namespace SportDirect.Areas.ViewModels
         {
             _isSearchtWay = true;
             _searchText = SearchText;
+            IstVisible = false;
+            Title = SearchText;
             try
             {
                 ProductList = new CollectionProductListDataProducts();
@@ -165,7 +176,7 @@ namespace SportDirect.Areas.ViewModels
                 else
                 {
                     // getCategory.Clear();
-                    await ShowAlert("This product is not available", "Ok");
+                    await ShowAlert("This product is not available");
                 }
             }
             catch (Exception ex)
@@ -177,10 +188,25 @@ namespace SportDirect.Areas.ViewModels
         public ICommand ThresoldCommand => new Command(async (obj) =>
         {
             if (ProductList.pageInfo.hasNextPage)
+            {
                 GetCollection(ProductList.edges.LastOrDefault().cursor);
+                MessagingCenter.Send(this, "lastPlace", false);
+                ShowText = false;
+            }
+                
             else
+            {
+                MessagingCenter.Send(this, "lastPlace", true);
                 UserDialogs.Instance.Toast("No More Data Available");
-        });
+                ShowText = true;
+            }
+                
+        }); 
+            public ICommand GoBackHomeCommand => new Command(async (obj) =>
+            {
+                var existingPages = App.Current.MainPage.Navigation.PopToRootAsync();
+                App.Current.MainPage = new NavigationPage(new MainMenu());
+            });
 
         private async void GetCollection(string afterData)
         {
@@ -233,12 +259,21 @@ namespace SportDirect.Areas.ViewModels
                     var res = await _apiService.GetCollectionListData(queryid_id);
                     if (res?.data?.shop?.collectionByHandle != null)
                     {
-                        foreach (var item in res?.data?.shop?.collectionByHandle?.products.edges)
+                        if (res?.data?.shop?.collectionByHandle?.products?.edges.Count > 0)
                         {
-                            if (!ProductList.edges.Any(s => s.node.id == item.node.id))
+                            foreach (var item in res?.data?.shop?.collectionByHandle?.products.edges)
                             {
-                                ProductList?.edges.Add(item);
+                                if (!ProductList.edges.Any(s => s.node.id == item.node.id))
+                                {
+                                    ProductList?.edges.Add(item);
+                                }
                             }
+                        }
+                        else
+                        {
+                            MessagingCenter.Send(this, "lastPlace", true);
+                            UserDialogs.Instance.Toast("No More Data Available");
+                            ShowText = true;
                         }
                     }
                     else
