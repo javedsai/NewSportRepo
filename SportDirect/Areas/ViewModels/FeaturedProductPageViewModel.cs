@@ -31,8 +31,16 @@ namespace SportDirect.Areas.ViewModels
         public bool IstVisible
         {
             get { return _istVisible; }
-            set { _istVisible = value;NotifyPropertyChanged(nameof(IstVisible)); }
+            set { _istVisible = value; NotifyPropertyChanged(nameof(IstVisible)); }
         }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; NotifyPropertyChanged(nameof(IsBusy)); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -59,7 +67,7 @@ namespace SportDirect.Areas.ViewModels
             get { return _showText; }
             set { _showText = value; RaisePropertyChanged(nameof(ShowText)); }
         }
-        
+
         //private ObservableCollection<CollectionProductListDataProducts> _productList;
         //public ObservableCollection<CollectionProductListDataProducts> ProductList
         //{
@@ -72,10 +80,10 @@ namespace SportDirect.Areas.ViewModels
             get { return _productList; }
             set { _productList = value; NotifyPropertyChanged(nameof(ProductList)); }
         }
-        public ICommand SortCommand => new Command(async(obj) =>
+        public ICommand SortCommand => new Command(async (obj) =>
         {
             _isSortWay = true;
-             App.Locator.SortPage.InitilizeData(_handler);
+            App.Locator.SortPage.InitilizeData(_handler);
             await App.Current.MainPage.Navigation.PushModalAsync(new SortPage());
         });
         public ICommand FilterCommand => new Command(async (obj) =>
@@ -87,7 +95,7 @@ namespace SportDirect.Areas.ViewModels
         {
             get
             {
-                return new Command(async(obj) =>
+                return new Command(async (obj) =>
                 {
                     var CatagoriesByListData = obj as CollectionProductListDataEdge;
                     await App.Locator.ProductDetailsPage.InitializeData(CatagoriesByListData);
@@ -126,8 +134,8 @@ namespace SportDirect.Areas.ViewModels
                 if (res?.data?.shop?.collectionByHandle != null)
                 {
                     ProductList = new CollectionProductListDataProducts();
-                    ProductList.edges=(res?.data?.shop?.collectionByHandle?.products.edges);
-                    ProductList.pageInfo=(res?.data?.shop?.collectionByHandle?.products.pageInfo);
+                    ProductList.edges = (res?.data?.shop?.collectionByHandle?.products.edges);
+                    ProductList.pageInfo = (res?.data?.shop?.collectionByHandle?.products.pageInfo);
 
                     Title = res?.data?.shop?.collectionByHandle?.title;
                 }
@@ -167,9 +175,9 @@ namespace SportDirect.Areas.ViewModels
                 string queryid_id = "{ shop{ products(first: 20, query:" + type + "){ pageInfo { hasNextPage hasPreviousPage } edges{ cursor node{id images(first: 5){ edges {node{ id src}}} title productType description variants(first: 50){ edges{ node{ id  available price title selectedOptions{name value} image{ id originalSrc} } } }}}}}}";
                 await Task.Delay(2000);
                 var res = await _apiService.SortListOfProduct(queryid_id);
-                 if (res?.data?.shop?.products?.edges?.Count > 0)
+                if (res?.data?.shop?.products?.edges?.Count > 0)
                 {
-                    
+
                     ProductList.edges = (res?.data?.shop?.products?.edges);
                     ProductList.pageInfo = (res?.data?.shop?.products.pageInfo);
                 }
@@ -185,32 +193,59 @@ namespace SportDirect.Areas.ViewModels
                 UserDialogs.Instance.HideLoading();
             }
         }
+        private int _remainingItems = 1;
+        public int RemainingItems { get=>_remainingItems;
+            set {
+                _remainingItems = value;
+                RaisePropertyChanged();
+            }
+        }
         public ICommand ThresoldCommand => new Command(async (obj) =>
         {
-            if (ProductList.pageInfo.hasNextPage)
-            {
-                GetCollection(ProductList.edges.LastOrDefault().cursor);
-                MessagingCenter.Send(this, "lastPlace", false);
-                ShowText = false;
-            }
-                
-            else
-            {
-                MessagingCenter.Send(this, "lastPlace", true);
-                UserDialogs.Instance.Toast("No More Data Available");
-                ShowText = true;
-            }
-                
-        }); 
-            public ICommand GoBackHomeCommand => new Command(async (obj) =>
-            {
-                var existingPages = App.Current.MainPage.Navigation.PopToRootAsync();
-                App.Current.MainPage = new NavigationPage(new MainMenu());
-            });
+            if (IsBusy)
+                return;
 
-        private async void GetCollection(string afterData)
+            IsBusy = true;
+
+            try
+            {
+                if (ProductList.pageInfo.hasNextPage)
+                {
+                    UserDialogs.Instance.ShowLoading();
+                    await GetCollection(ProductList.edges.LastOrDefault().cursor);
+                    UserDialogs.Instance.HideLoading();
+                    MessagingCenter.Send(this, "lastPlace", false);
+                    ShowText = false;
+                }
+
+                else
+                {
+                   // RemainingItems = -1;
+                    MessagingCenter.Send(this, "lastPlace", true);
+                    UserDialogs.Instance.Toast("No More Data Available");
+                    ShowText = true;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        });
+        public ICommand GoBackHomeCommand => new Command(async (obj) =>
         {
-            if(_isSearchtWay)
+            // var existingPages = App.Current.MainPage.Navigation.PopToRootAsync();
+            App.Current.MainPage = new ContentPage();
+            await Task.Delay(100);
+            App.Current.MainPage = new NavigationPage(new MainMenu());
+        });
+
+
+        private async Task GetCollection(string afterData)
+        {
+            if (_isSearchtWay)
             {
                 try
                 {
@@ -221,7 +256,7 @@ namespace SportDirect.Areas.ViewModels
                     var res = await _apiService.SortListOfProduct(queryid_id);
                     if (res.data.shop.products.edges.Count > 0)
                     {
-                        foreach(var item in res.data.shop.products.edges)
+                        foreach (var item in res.data.shop.products.edges)
                         {
                             var data = ProductList.edges.Any(s => s.node.id.Equals(item.node.id));
                             if (!data)
@@ -236,7 +271,7 @@ namespace SportDirect.Areas.ViewModels
                     else
                     {
                         // getCategory.Clear();
-                       // await ShowAlert("This product is not available", "Ok");
+                        // await ShowAlert("This product is not available", "Ok");
                     }
                 }
                 catch (Exception ex)
@@ -291,10 +326,10 @@ namespace SportDirect.Areas.ViewModels
 
         public ICommand FavoriteCommand => new Command((obj) =>
         {
-              
+
 
         });
-       
+
         public async Task<ObservableCollection<ProductViewModel>> GetProductList(string Product_type)
         {
             ObservableCollection<ProductViewModel> productViewModels = new ObservableCollection<ProductViewModel>();

@@ -11,7 +11,7 @@ using SportDirect.Areas.Views.MasterDetailsPage;
 using SportDirect.Assets;
 using System.IO;
 using System;
-
+using DLToolkit.Forms.Controls;
 namespace SportDirect
 {
     public partial class App : Application
@@ -32,6 +32,7 @@ namespace SportDirect
         public App()
         {    
             InitializeComponent();
+            FlowListView.Init();
             XF.Material.Forms.Material.Init(this);
             Device.SetFlags(new string[] { "Expander_Experimental", "IndicatorView_Experimental" });            
             Debug.WriteLine("ScreenHeight = {0}; SW = {1}", MainPageScreenHeight, MainPageScreenWidth);

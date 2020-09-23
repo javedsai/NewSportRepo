@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:translate="clr-namespace:SportDirect.Resources"
     xmlns:collec="clr-namespace:SportDirect.iOS.Renderers.NoBounceRenderer"
+    xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="thispage"
     ios:Page.UseSafeArea="true"
@@ -93,27 +94,18 @@
                 </Frame>
             </Grid>
 
-            <Grid Grid.Row="2" RowDefinitions="97*,3*" Margin="8,0">
-                     <CollectionView
-                        Margin="0,12" Scrolled="CollectionView_Scrolled"
-                        
-                        EmptyView="No Data found" x:Name="fet"
-                        HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding ProductList.edges, Mode=TwoWay}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout
-                                HorizontalItemSpacing="10"
-                                Orientation="Vertical"
-                                Span="2"
-                                VerticalItemSpacing="20" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
+            <Grid Grid.Row="2" RowDefinitions="*,Auto" Margin="8,0">
+                    <flv:FlowListView HasUnevenRows="True" FlowColumnCount="2" SeparatorVisibility="None"
+                                       ItemAppearing="FlowListView_ItemAppearing"
+	                    FlowItemsSource="{Binding ProductList.edges, Mode=TwoWay}" >
+
+	                    <flv:FlowListView.FlowColumnTemplate>
+		                    <DataTemplate>
+			                <StackLayout>
                                     <Frame Padding="0" CornerRadius="10">
                                         <forms:CachedImage
                                              ErrorPlaceholder="LoadIcon.png"
-                            LoadingPlaceholder="LoadIcon.png"
+                                            LoadingPlaceholder="LoadIcon.png"
                                             Aspect="Fill"
                                             HeightRequest="175"
                                             Source="{Binding node.variants.edges[0].node.image.originalSrc}" />
@@ -140,12 +132,66 @@
                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductCommand, Source={x:Reference thispage}}" CommandParameter="{Binding .}" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
+		                    </DataTemplate>
+	                    </flv:FlowListView.FlowColumnTemplate>
+
+                    </flv:FlowListView>
+                  <!--
+                <flv:FlowListView
+                        Margin="0,12" Scrolled="CollectionView_Scrolled"
+                        EmptyView="No Data found" x:Name="fet"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsSource="{Binding ProductList.edges, Mode=TwoWay}">
+                      <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                HorizontalItemSpacing="10"
+                                Orientation="Vertical"
+                                Span="2"
+                                VerticalItemSpacing="20" />
+                        </CollectionView.ItemsLayout>
+                        <flv:FlowListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                    <Frame Padding="0" CornerRadius="10">
+                                        <forms:CachedImage
+                                             ErrorPlaceholder="LoadIcon.png"
+                                            LoadingPlaceholder="LoadIcon.png"
+                                            Aspect="Fill"
+                                            HeightRequest="175"
+                                            Source="{Binding node.variants.edges[0].node.image.originalSrc}" />
+                                    </Frame>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="11"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding node.title}"
+                                        TextColor="#171717" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Start"
+                                        TextColor="#00679C">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="$" />
+                                                <Span Text="{Binding node.variants.edges[0].node.price}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductCommand, Source={x:Reference thispage}}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                </ViewCell>
+                                
                             </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Label Grid.Row="1" Text="Go to Home Page" x:Name="lastItem" Padding="0">
+                        </flv:FlowListView.ItemTemplate>
+                    </flv:FlowListView>
+                -->       
+                    <Label Padding="5" Margin="0,0,0,10" TextDecorations="Underline" TextColor="Blue" Grid.Row="1" Text="Go to Home Page" x:Name="lastItem">
                         <Label.GestureRecognizers>
-                            <!--<TapGestureRecognizer Command="{Binding GoBackHomeCommand}"/>-->
+                           <TapGestureRecognizer Command="{Binding GoBackHomeCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
                    
