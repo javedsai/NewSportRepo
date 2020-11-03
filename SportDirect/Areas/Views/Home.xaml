@@ -132,7 +132,7 @@
                             Margin="0,5"
                             HeightRequest="180"
                             VerticalOptions="Center">
-                            <StackLayout Orientation="Horizontal">
+                            <!--<StackLayout Orientation="Horizontal">
                                 <Label
                                 FontSize="18"
                                 HorizontalOptions="Start"
@@ -152,7 +152,7 @@
                                         <TapGestureRecognizer Command="{Binding SeeAllCategoryCommand}" />
                                     </Label.GestureRecognizers>
                                 </Label>
-                            </StackLayout>
+                            </StackLayout>-->
                             
                             <StackLayout Margin="0,8" Orientation="Horizontal">
                                 <CollectionView x:Name="col1" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding CategoriesImagesList}">
@@ -203,10 +203,10 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Margin="8,0,0,0"
-                                    FontSize="18"
+                                    FontSize="16"
                                     HorizontalOptions="Start"
                                     Style="{DynamicResource DefaultLabelStyle}"
-                                    Text="Best Sellers"
+                                    Text="Products that may interest you"
                                     TextType="Text"
                                     VerticalOptions="Center" />
                                 <Label

@@ -44,6 +44,7 @@ namespace SportDirect.ViewModels
             _iocConfig.RegisterViewModel<EditCartPageViewModel>();
             _iocConfig.RegisterViewModel<PaymentPageViewModel>();
             _iocConfig.RegisterViewModel<SuccessPopupViewModel>();
+            _iocConfig.RegisterViewModel<ZoomImagePopUpViewModel>();
             _iocConfig.RegisterViewModel<ProductViewPageViewModel>();
             _iocConfig.RegisterViewModel<FilterPageViewModel>();
             _iocConfig.RegisterViewModel<ProductDetailsPageViewModel>();
@@ -134,7 +135,9 @@ namespace SportDirect.ViewModels
         public FeaturedProductPageViewModel FeaturedProductPage => GetViewModel<FeaturedProductPageViewModel>();
         public NotificationPageViewModel NotificationPage => GetViewModel<NotificationPageViewModel>();
         public SortPageViewModel SortPage => GetViewModel<SortPageViewModel>();
+        public ZoomImagePopUpViewModel ZoomImagePop => GetViewModel<ZoomImagePopUpViewModel>();
         public ForgetPasswordPageViewModel ForgetPasswordPage => GetViewModel<ForgetPasswordPageViewModel>();
+       
 
         // TODO: create properties for each newly created view model
         public TViewModel GetViewModel<TViewModel>() where TViewModel : BasePageViewModel

@@ -15,12 +15,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+
 using SportDirect.Areas.Views.MasterDetailsPage;
 
 namespace SportDirect.Areas.ViewModels
 {
     public class FeaturedProductPageViewModel : BasePageViewModel, INotifyPropertyChanged
     {
+        
+        private static Page page;
         public string _handler;
         private bool _isSortWay;
         private string _Condition = string.Empty;
@@ -183,8 +186,20 @@ namespace SportDirect.Areas.ViewModels
                 }
                 else
                 {
+
+                    //var result = await page.DisplayAlert("Success", "Not Finding what you want", "Ok", "Cancel"); // since we are using async, we should specify the DisplayAlert as awaiting.
+                    //if (result == true) // if it's equal to Ok
+                    //{
+
+                    //    await App.Current.MainPage.Navigation.PushModalAsync(new Home());
+                    //   // Navigation.PopAsync(new Home());
+                    //}
+                    //else // if it's equal to Cancel
+                    //{
+                    //    return; // just return to the page and do nothing.
+                    //}
                     // getCategory.Clear();
-                    await ShowAlert("This product is not available");
+                   await ShowAlert("Not Finding what you want");
                 }
             }
             catch (Exception ex)

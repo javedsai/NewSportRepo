@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using SportDirect.Areas.PopUp;
 
 namespace SportDirect.Areas.ViewModels
 {
@@ -365,6 +368,14 @@ namespace SportDirect.Areas.ViewModels
 
 
             //await App.Current.MainPage.Navigation.PushModalAsync(new CartPage());
+        });
+
+        public ICommand ImageClicked => new Command((obj) =>
+        {
+          
+
+             Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new ZoomImagePopUp(obj));
+
         });
         public ProductDetailModel PrevColor { get; set; }
         public ICommand SizeSelectCommand => new Command((obj) =>

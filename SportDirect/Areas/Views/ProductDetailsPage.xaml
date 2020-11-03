@@ -10,6 +10,8 @@
     xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:translate="clr-namespace:SportDirect.Resources"
+    xmlns:local="clr-namespace:SportDirect.Controls"
+   
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="thispage"
     ios:Page.UseSafeArea="true"
@@ -85,7 +87,11 @@
                                             HorizontalOptions="Center"
                                             LoadingPlaceholder="LoadIcon"
                                             Source="{Binding .}"
-                                            VerticalOptions="FillAndExpand" />
+                                            VerticalOptions="FillAndExpand">
+                                            <forms:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.ImageClicked, Source={x:Reference Crsl}}" CommandParameter="{Binding .}"/>
+                                            </forms:CachedImage.GestureRecognizers>
+                                            </forms:CachedImage>
                                     </DataTemplate>
                                 </CarouselView.ItemTemplate>
                             </CarouselView>
@@ -132,7 +138,7 @@
                                             TextColor="#171717"
                                             TextType="Text"
                                             VerticalOptions="Center" />
-                                        <StackLayout
+                                        <!--<StackLayout
                                             HorizontalOptions="Start"
                                             Orientation="Horizontal"
                                             Spacing="2">
@@ -169,7 +175,7 @@
                                                 TextType="Text"
                                                 VerticalOptions="Center" />
 
-                                        </StackLayout>
+                                        </StackLayout>-->
                                     </StackLayout>
                                     <StackLayout
                                         Grid.Column="1"
@@ -259,7 +265,7 @@
                                         Command="{Binding BuyNowCommand}"
                                         Style="{DynamicResource DefaultButtonStyle}"
                                         Text="Add to Cart" />
-                                    <Frame
+                                    <!--<Frame
                                         Grid.Column="1"
                                         Padding="0"
                                         BorderColor="#70707040"
@@ -275,14 +281,14 @@
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Path=BindingContext.WishCommand, Source={x:Reference thispage}}" />
                                         </Frame.GestureRecognizers>
-                                    </Frame>
+                                    </Frame>-->
                                 </Grid>
                             </StackLayout>
 
 
 
 
-                            <StackLayout Margin="0,8" Orientation="Horizontal">
+                            <!--<StackLayout Margin="0,8" Orientation="Horizontal">
                                 <Image
                                     HeightRequest="16"
                                     HorizontalOptions="Start"
@@ -297,7 +303,7 @@
                                     TextColor="#0081B1"
                                     TextType="Text"
                                     VerticalOptions="Center" />
-                            </StackLayout>
+                            </StackLayout>-->
                             <StackLayout Margin="0,15,0,0">
                                 <Label
                                     Margin="0,5"
@@ -310,11 +316,9 @@
                                     VerticalOptions="Center" />
 
                                 <Label
-                                    FontSize="16"
                                     HorizontalOptions="Start"
                                     Style="{DynamicResource DefaultLabelStyle2}"
                                     Text="{Binding Description}"
-                                    TextType="Html"
                                     VerticalOptions="Center" />
                                 <!--<StackLayout>
                                     <StackLayout Orientation="Horizontal">
@@ -355,7 +359,7 @@
                                 </StackLayout>
                             </StackLayout>-->
 
-                            <StackLayout Margin="0,15,0,0">
+                            <!--<StackLayout Margin="0,15,0,0">
                                 <Grid>
                                     <StackLayout Grid.Column="0">
                                         <ImageButton
@@ -427,7 +431,7 @@
                                         </Label>
                                     </StackLayout>
                                 </Grid>
-                            </StackLayout>
+                            </StackLayout>-->
                             <BoxView Style="{StaticResource BoxViewStyle}" />
 
                             <StackLayout Margin="0,5">
